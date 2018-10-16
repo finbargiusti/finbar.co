@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "cssnano": "^4.1.4",
+    "parcel": "^1.10.3",
+    "sass": "^1.14.2"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "scripts": {
+    "start": "parcel index.html -p 8080"
+  }
+}
