@@ -5,6 +5,7 @@
     "sass": "^1.14.2"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.1",
     "jquery": "^3.3.1"
   },
   "scripts": {
