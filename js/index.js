@@ -53,7 +53,7 @@ let centerY,centerX, mouseX, mouseY, rotY, rotX, height
 $(document).ready(() => {
     height = window.innerHeight
     $(".container").css("--height", height)
-    window.screen.orientation.lock("portrait")
+    try{window.screen.orientation.lock("portrait")} catch {}
     $(document).mousemove((e) => {
         if ($(window).width() > 1100) {
             centerY = $(window).height() / 2
