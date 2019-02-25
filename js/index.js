@@ -5,39 +5,42 @@ let letters = $(".container").children()
 let open = false;
 
 $.each(letters, (index, element) => {
-    $( element ).click(() => {
+    $(element).click(() => {
         if (!open) {
             open = true;
-            $($(element).children()[0]).css({"background-color": "hsl("+(60*(index+1))+", 40%, 50%)", "color": "white" })
+            $($(element).children()[0]).css({
+                "background-color": "hsl(" + (60 * (index + 1)) + ", 40%, 50%)",
+                "color": "white"
+            })
             if ($(window).width() > 1100) {
                 $(element).css("left", "0")
-                for (let i = 0; i < letters.length - index -2; i++) {
-                    $(letters[index+1+i]).css("left", "100vw")
+                for (let i = 0; i < letters.length - index - 2; i++) {
+                    $(letters[index + 1 + i]).css("left", "100vw")
                 }
-                $(".close").css("z-index", index+1)
+                $(".close").css("z-index", index + 1)
             } else {
                 $(element).css("bottom", "0")
-                for (let i = index-1; i >= 0; i--) {
+                for (let i = index - 1; i >= 0; i--) {
                     $(letters[i]).css("bottom", "100vh")
                 }
-                $(".close").css("z-index", Math.abs(6-index))
+                $(".close").css("z-index", Math.abs(6 - index))
             }
             $(".container").addClass("fullView")
             $(".container").removeAttr("style")
             height = window.innerHeight
             $(".container").css("--height", height)
         }
-    })    
+    })
 })
 
 $.each($(".close"), (index, element) => {
-    $( element ).click(() => {
+    $(element).click(() => {
         $.each(letters, (index, elem) => {
             $(elem).removeAttr("style")
             $($(elem).children()[0]).removeAttr("style")
         })
         if ($(window).width() > 1100) {
-            $(".container").css("transform", "perspective(600px) rotateY("+rotY+"deg) rotateX("+rotX+"deg) scale(0.6)")
+            $(".container").css("transform", "perspective(600px) rotateY(" + rotY + "deg) rotateX(" + rotX + "deg) scale(0.6)")
         }
         setTimeout(() => {
             open = false
@@ -48,12 +51,14 @@ $.each($(".close"), (index, element) => {
     })
 })
 
-let centerY,centerX, mouseX, mouseY, rotY, rotX, height
+let centerY, centerX, mouseX, mouseY, rotY, rotX, height
 
 $(document).ready(() => {
     height = window.innerHeight
     $(".container").css("--height", height)
-    try{window.screen.orientation.lock("portrait")} catch {}
+    try {
+        window.screen.orientation.lock("portrait")
+    } catch {}
     $(document).mousemove((e) => {
         if ($(window).width() > 1100) {
             centerY = $(window).height() / 2
@@ -66,7 +71,7 @@ $(document).ready(() => {
             rotY = (mouseX / centerX) * 8 // 5
             rotX = (mouseY / centerY) * 13 // 8
             if (!open) {
-                $(".container").css("transform", "perspective(600px) rotateY("+rotY+"deg) rotateX("+rotX+"deg) scale(0.6)")
+                $(".container").css("transform", "perspective(600px) rotateY(" + rotY + "deg) rotateX(" + rotX + "deg) scale(0.6)")
             }
         }
     })
@@ -80,7 +85,9 @@ $(window).resize(() => {
 setInterval(() => {
     var options = {
         timeZone: 'Europe/Dublin',
-        hour: 'numeric', minute: 'numeric', second: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
     }
     let formatter = new Intl.DateTimeFormat([], options)
     let currTime = formatter.format(new Date())
