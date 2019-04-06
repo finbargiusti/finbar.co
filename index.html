@@ -1,163 +1,193 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>FINBAR</title>
-        <link rel="stylesheet" href="css/style.sass">
-        <link rel="manifest" href="/manifest.json">
-        <meta charset="ISO-8859-1">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    </head>
-    <body>
-    <a href="https://github.com/finbargiusti/finbar.co" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250"
-        style="fill:#fff; color:#696969; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-            fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm" stroke="#696969"></path>
-        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-            fill="currentColor" class="octo-body" stroke="#696969"></path>
-    </svg></a>
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
+
+<head>
+    <title>FINBAR</title>
+    <link rel="stylesheet" href="css/style.sass">
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <img src="files/me.png" class="finbar">
+    <a href="https://github.com/finbargiusti/finbar.co" class="github-corner" aria-label="View source on GitHub"><svg
+            width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#696969; position: absolute; top: 0; border: 0; right: 0;"
+            aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm" stroke="#696969"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                fill="currentColor" class="octo-body" stroke="#696969"></path>
+        </svg></a>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
             js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.1&appId=158846337876044&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="container">
-            <div class="letter 1">
-                <div class="first">
-                    <p>F</p>
-                </div>
-                <div class="next">
-                    <h2>Finbar Giusti</h2>
-                    <p>
-                        Finbar is an Irish <b>programmer, web designer and video editor</b>.
-                        He found his vocation as a coder when he was 7 and has been working in the field ever since.
-                        He now <b>specialises in JS</b>.
-                        He is competent in Python, C, C++ and many others.
-                    </p>
-                    <p>
-                        Finbar, who is bicultural, <b>speaks English and Italian fluently</b>.
-                        He is also competent in French and Spanish.
-                        He has a great interest in design, music and applied maths.
-                        He also <b>can cook a mean lasagna</b>.
-                    </p>
-                    <p>
-                        You can contact finbar at <a href="mailto:finbar@finbar.co">finbar@finbar.co</a>
-                    </p>
-                </div>
+    <div class="container">
+        <div class="letter 1">
+            <div class="first">
+                <p>F</p>
             </div>
-            <div class="letter 2">
-                <div class="first">
-                    <p>I</p>
-                </div>
-                <div class="next">
-                    <h2>Information</h2>
-                    <h3>Links:</h3>
-                    <p>Github: <a href="http://github.com/finbargiusti">finbargiusti</a></p>
-                    <p>Twitter: <a href="http://twitter.com/finbarbusiness">finbarbusiness</a></p>
-                    <h3>Timezones:</h3>
-                    <p>Finbar is available for contact most days between 8am and 9pm.</p>
-                    <p>Current time for Finbar: <span id="time"></span></p>
-                </div>
+            <div class="next">
+                <h2>Finbar Giusti</h2>
+                <p>
+                    Finbar is an Irish <b>programmer, web designer and video editor</b>.
+                    He found his vocation as a coder when he was 7 and has been working in the field ever since.
+                    He now <b>specialises in JS</b>.
+                    He is competent in Python, C, C++ and many others.
+                </p>
+                <p>
+                    Finbar, who is bicultural, <b>speaks English and Italian fluently</b>.
+                    He is also competent in French and Spanish.
+                    He has a great interest in design, music and applied maths.
+                    He also <b>can cook a mean lasagna</b>.
+                </p>
+                <p>
+                    You can contact finbar at <a href="mailto:finbar@finbar.co">finbar@finbar.co</a>
+                </p>
             </div>
-            <div class="letter 3">
-                <div class="first">
-                    <p>N</p>
-                </div>
-                <div class="next">
-                    <h2>News</h2>
-                    <!-- <script src="http://cyberstick.tumblr.com/js"></script> -->
-                    <a class="twitter-timeline" data-dnt="true" data-link-color="#2B7BB9" href="https://twitter.com/finbarbusiness?ref_src=twsrc%5Etfw">Tweets by Finbar Giusti</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    <!-- <iframe src="http://cyberstick.tumblr.com/" width="100%" height="1000" frameborder="0"></iframe> -->
-                    <!-- <div class="fb-page" 
+        </div>
+        <div class="letter 2">
+            <div class="first">
+                <p>I</p>
+            </div>
+            <div class="next">
+                <h2>Information</h2>
+                <h3>Links:</h3>
+                <p>Github: <a href="http://github.com/finbargiusti">finbargiusti</a></p>
+                <p>Twitter: <a href="http://twitter.com/finbarbusiness">finbarbusiness</a></p>
+                <h3>Timezones:</h3>
+                <p>Finbar is available for contact most days between 8am and 9pm.</p>
+                <p>Current time for Finbar: <span id="time"></span></p>
+            </div>
+        </div>
+        <div class="letter 3">
+            <div class="first">
+                <p>N</p>
+            </div>
+            <div class="next">
+                <h2>News</h2>
+                <!-- <script src="http://cyberstick.tumblr.com/js"></script> -->
+                <a class="twitter-timeline" data-dnt="true" data-link-color="#2B7BB9" href="https://twitter.com/finbarbusiness?ref_src=twsrc%5Etfw">Tweets
+                    by Finbar Giusti</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <!-- <iframe src="http://cyberstick.tumblr.com/" width="100%" height="1000" frameborder="0"></iframe> -->
+                <!-- <div class="fb-page" 
                         data-tabs="timeline"
                         data-href="https://www.facebook.com/finbargiusti.tutoring"
                         width="500"
                         data-adapt-container-width="true"
                         data-hide-cover="false"></div> -->
-                </div>
             </div>
-            <div class="letter 4">
-                <div class="first">
-                    <p>B</p>
-                </div>
-                <div class="next">
-                    <h2>Business</h2>
-                    <p>Finbar used to do freelance programming, but has <b>stopped full-time recently.</b>
-                        However, on request, you can contact him at <a href="mailto:finbar@finbar.co">finbar@finbar.co</a> for availability and potentially, a quote.</p>
-                    <p>Currently, Finbar is venturing into personal <b>programming tutoring for kids</b>.
-                         If you'd like to <b>get your child into programming</b> early, you can look into and contact finbar on his <a href="http://fb.me/finbargiusti.tutoring">tutoring facebook page</a></p>
-                </div>
-            </div>
-            <div class="letter 5">
-                <div class="first">
-                    <p>A</p>
-                </div>
-                <div class="next">
-                    <h2>All current projects</h2>
-                    <h3>finbar.co</h3>
-                    <p>
-                        The website you are currently viewing, was built in a <b>few days</b> using simple <b>jquery, sass and html</b>.
-                        For simplicity, it uses the <a href="http://parceljs.org">parcel bundler</a> which allows for using of node modules seamlessly in web apps.
-                    </p>
-                    <p><a href="http://github.com/finbargiusti/finbar.co"><i class="fab fa-github"></i> finbar.co</a></p>
-                    <h3>DrawTogether</h3>
-                    <p>
-                        DrawTogether is my personal <b>favourite</b> project.
-                        It is <a href="http://nodejs.org">node.js</a> based website that allows users to collaborate on drawings <b>in real time</b>.
-                        It also allows them to stream their drawing to spectators.
-                        To put it simply, it is more or less <b>multiplayer ms paint</b>.
-                    </p>
-                    <p><a href="http://github.com/finbargiusti/DrawTogether"><i class="fab fa-github"></i> DrawTogether</a></p>
-                    <p><a href="http://drawtogether.finbar.co">Live Website</a></p>
-                    <h3>2.5D</h3>
-                    <p>
-                        2.5D is a game with <b>its own orthogonal engine</b> written in vanilla js.
-                        It uses perspective to allow you to play 3 different 2 dimensional minigames in <b>multiplayer</b> in 3d space.
-                    </p>
-                    <p><a href="http://github.com/finbargiusti/2.5D"><i class="fab fa-github"></i> 2.5D</a></p>
-                    <h3>Cyberstick</h3>
-                    <p>
-                        Cyberstick is a website that allows you to <b>instantly</b> and <b>anonymously</b> share files.
-                        It is made especially for journalists / persons of interest in countries with very <b>strict and punishing regimes</b>.
-                    </p>
-                    <p><a href="http://github.com/finbargiusti/CyberstickBT"><i class="fab fa-github"></i> Cyberstick</a></p>
-                </div>
-            </div>
-            <div class="letter 6">
-                <div class="first">
-                    <p>R</p>
-                </div>
-                <div class="next">
-                    <h2>Résumé</h2>
-                    <p>Finbar is <b>fluent in a wide range of computer languages:</b></p>
-                    <ul>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>Javascript</li>
-                        <li>C++</li>
-                        <li>Node.js</li>
-                        <li>Python</li>
-                        <li>C</li>
-                    </ul>
-                    <p>
-                            Finbar has a wide range of competencies in <b>web design</b> with both <b>individual and corporate clients</b>.
-                            
-                            </p><p>
-            
-                            Finbar has experience in the field of <b>video editing</b>, with particular competence in recording and editing <b>audition tapes</b> for entertainers.
-            
-                            </p><p>
-                            
-                            Finbar believes that a good programmer never stops learning. The truly ambitious in this field approach every project as a new learning experience. This is the philosphy he brings to each of his endeavours.
-                    <p/>
-                </div>
-            </div>
-            <b class="close">X</b>
         </div>
-    </body>
-    <script src="js/index.js"></script>
+        <div class="letter 4">
+            <div class="first">
+                <p>B</p>
+            </div>
+            <div class="next">
+                <h2>Business</h2>
+                <p>Finbar used to do freelance programming, but has <b>stopped full-time recently.</b>
+                    However, on request, you can contact him at <a href="mailto:finbar@finbar.co">finbar@finbar.co</a>
+                    for availability and potentially, a quote.</p>
+                <p>Currently, Finbar is venturing into personal <b>programming tutoring for kids</b>.
+                    If you'd like to <b>get your child into programming</b> early, you can look into and contact finbar
+                    on his <a href="http://fb.me/finbargiusti.tutoring">tutoring facebook page</a></p>
+            </div>
+        </div>
+        <div class="letter 5">
+            <div class="first">
+                <p>A</p>
+            </div>
+            <div class="next">
+                <h2>All current projects</h2>
+                <h3>finbar.co</h3>
+                <p>
+                    The website you are currently viewing, was built in a <b>few days</b> using simple <b>jquery, sass
+                        and html</b>.
+                    For simplicity, it uses the <a href="http://parceljs.org">parcel bundler</a> which allows for using
+                    of node modules seamlessly in web apps.
+                </p>
+                <p><a href="http://github.com/finbargiusti/finbar.co"><i class="fab fa-github"></i> finbar.co</a></p>
+                <h3>DrawTogether</h3>
+                <p>
+                    DrawTogether is my personal <b>favourite</b> project.
+                    It is <a href="http://nodejs.org">node.js</a> based website that allows users to collaborate on
+                    drawings <b>in real time</b>.
+                    It also allows them to stream their drawing to spectators.
+                    To put it simply, it is more or less <b>multiplayer ms paint</b>.
+                </p>
+                <p><a href="http://github.com/finbargiusti/DrawTogether"><i class="fab fa-github"></i> DrawTogether</a></p>
+                <p><a href="http://drawtogether.finbar.co">Live Website</a></p>
+                <h3>2.5D</h3>
+                <p>
+                    2.5D is a game with <b>its own orthogonal engine</b> written in vanilla js.
+                    It uses perspective to allow you to play 3 different 2 dimensional minigames in <b>multiplayer</b>
+                    in 3d space.
+                </p>
+                <p><a href="http://github.com/finbargiusti/2.5D"><i class="fab fa-github"></i> 2.5D</a></p>
+                <h3>Cyberstick</h3>
+                <p>
+                    Cyberstick is a website that allows you to <b>instantly</b> and <b>anonymously</b> share files.
+                    It is made especially for journalists / persons of interest in countries with very <b>strict and
+                        punishing regimes</b>.
+                </p>
+                <p><a href="http://github.com/finbargiusti/CyberstickBT"><i class="fab fa-github"></i> Cyberstick</a></p>
+                <h3>Shirt Catalogue</h3>
+                <p>
+                    Shirt catalogue is a React app Finbar built during his time in work experience in <a href="https://zalando.ie/">Zalando</a>.
+                    It allows a user to search through a subsection of Zalando's clothing database.
+                </p>
+                <p><a href="http://github.com/finbargiusti/shirt-catalogue"><i class="fab fa-github"></i> Shirt
+                        Catalogue</a></p>
+            </div>
+        </div>
+        <div class="letter 6">
+            <div class="first">
+                <p>R</p>
+            </div>
+            <div class="next">
+                <h2>Résumé</h2>
+                <p>Finbar is <b>fluent in a wide range of computer languages:</b></p>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Javascript</li>
+                    <li>C++</li>
+                    <li>Node.js</li>
+                    <li>Python</li>
+                    <li>C</li>
+                </ul>
+                <p>
+                    Finbar has a wide range of competencies in <b>web design</b> with both <b>individual and corporate
+                        clients</b>.
+
+                </p>
+                <p>
+
+                    Finbar has experience in the field of <b>video editing</b>, with particular competence in recording
+                    and editing <b>audition tapes</b> for entertainers.
+
+                </p>
+                <p>
+
+                    Finbar believes that a good programmer never stops learning. The truly ambitious in this field
+                    approach every project as a new learning experience. This is the philosphy he brings to each of his
+                    endeavours.
+                </p>
+                <p>Finbar has recently <b>attended</b> three week-long <b>work experiences</b> in <a href="https://kainos.com/">Kainos</a>,
+                    <a href="https://coderdojo.com/">Coderdojo</a>, and <a href="https://zalando.ie/">Zalando</a>.</p>
+            </div>
+        </div>
+        <b class="close">X</b>
+    </div>
+</body>
+<script src="js/index.js"></script>
+
 </html>
