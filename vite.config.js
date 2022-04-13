@@ -15,6 +15,7 @@ export default {
       },
     }),
   ],
+  root: './',
   build: {
     target: 'es2015',
     outDir: 'docs/',
@@ -22,4 +23,5 @@ export default {
       output: 'compact',
     },
   },
+  publicDir: 'public',
 };
