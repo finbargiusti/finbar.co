@@ -24,9 +24,15 @@ const camera = new THREE.PerspectiveCamera(
 
 let loaded = false;
 
+let mixer;
+
+let animation;
+
+let prevTime = Date.now();
+
 let siteObj;
 
-let speed = 0.003;
+let speed = 0.02;
 
 const init = async () => {
   const objloader = new GLTFLoader();
@@ -80,9 +86,16 @@ const init = async () => {
         scene.add(siteObj);
         siteObj.scale.multiplyScalar(0.05);
         siteObj.rotation.z = Math.PI / -7;
+        mixer = new THREE.AnimationMixer(siteObj);
+        animation = site.animations[0];
         setInterval(() => {
-          siteObj.rotateY(speed);
-          renderers.composer.render();
+          const slowDown = 0.004;
+          requestAnimationFrame(() => {
+            if (speed > 0) speed = Math.max(0.01, speed - slowDown);
+            if (speed < 0) speed = Math.min(0.01, speed + slowDown);
+            siteObj.rotateY(speed);
+            renderers.composer.render();
+          });
         }, 1000 / 30);
         render();
         resolve();
@@ -127,12 +140,36 @@ window.addEventListener('resize', () => {
   camera.aspect = container.clientWidth / container.clientHeight;
   camera.updateProjectionMatrix();
 
+  renderers.renderer.setSize(container.clientWidth, container.clientHeight);
+  renderers.composer.setSize(container.clientWidth, container.clientHeight);
+
   if (renderers.pixelpass.uniforms.value) {
-    renderers.renderer.setSize(container.clientWidth, container.clientHeight);
-    renderers.composer.setSize(container.clientWidth, container.clientHeight);
     renderers.pixelpass.uniforms.value.set(
       container.clientWidth,
       container.clientHeight
     );
   }
+});
+
+let clicked = false;
+
+window.addEventListener('mousedown', () => {
+  clicked = true;
+});
+
+window.addEventListener('mouseup', () => {
+  clicked = false;
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  let diff = e.movementX;
+  if (clicked) speed += diff / 1000;
+});
+
+canvas.addEventListener('mousedown', () => {
+  canvas.style.cursor = 'grabbing';
+});
+
+canvas.addEventListener('mouseup', () => {
+  canvas.style.cursor = 'grab';
 });
