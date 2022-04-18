@@ -76,7 +76,8 @@ const init = async () => {
   renderers.renderer = renderer;
   renderers.pixelpass = pixelpass;
 
-  camera.position.x = 50;
+  camera.position.x = 45;
+  camera.position.y = 10;
 
   camera.lookAt(0, 0, 0);
 
