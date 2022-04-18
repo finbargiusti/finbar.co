@@ -32,7 +32,9 @@ let prevTime = Date.now();
 
 let siteObj;
 
-let speed = 0.02;
+const slowDown = 0.001;
+
+let speed = 0.005;
 
 const init = async () => {
   const objloader = new GLTFLoader();
@@ -89,10 +91,9 @@ const init = async () => {
         mixer = new THREE.AnimationMixer(siteObj);
         animation = site.animations[0];
         setInterval(() => {
-          const slowDown = 0.004;
           requestAnimationFrame(() => {
-            if (speed > 0) speed = Math.max(0.01, speed - slowDown);
-            if (speed < 0) speed = Math.min(0.01, speed + slowDown);
+            if (speed > 0) speed = Math.max(slowDown, speed - slowDown);
+            if (speed < 0) speed = Math.min(slowDown, speed + slowDown);
             siteObj.rotateY(speed);
             renderers.composer.render();
           });
@@ -162,13 +163,14 @@ window.addEventListener('mousedown', () => {
 window.addEventListener('mouseup', () => {
   clicked = false;
   timeClicked = Date.now() - timeClicked;
-  speed += speedSum / (timeClicked / 50);
+  speed = speedSum / (timeClicked / 50);
+  if (Math.abs(speed) < slowDown) speed = slowDown;
 });
 
 const EARTH_SPEED_FACTOR = 1200;
 const EARTH_MOVE_FACTOR = 1900;
 
-let speedSum = 0.3;
+let speedSum = 0;
 
 canvas.addEventListener('mousemove', (e) => {
   let diff = e.movementX;
