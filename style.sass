@@ -18,6 +18,8 @@ html, body
   top: 0
   left: 0
 
+$mobile-breakpoint: 800px
+
 #content
   position: absolute
   top: 0
@@ -28,8 +30,11 @@ html, body
     width: 100vw
     display: grid
     grid-template-columns: 10% 400px auto 40% 10%
-    grid-template-rows: 20% 200px
-    scroll-snap-align: end
+    grid-template-rows: 20% 200px auto
+    @media screen and (max-width: $mobile-breakpoint)
+      grid-template-columns: 100%
+      grid-template-rows: 200px auto
+      scroll-snap-align: end
 
     #card
       color: #222222
@@ -46,6 +51,11 @@ html, body
         grid-row-end: 3
         grid-column-start: 2
         grid-column-end: 3
+        @media screen and (max-width: $mobile-breakpoint)
+          grid-column-start: 1
+          grid-column-end: 2
+          grid-row-start: 1
+          grid-row-end: 2
 
         h1
           margin-left: 24px
@@ -72,7 +82,12 @@ html, body
         grid-row-end: 4
         grid-column-start: 3
         grid-column-end: 6
-        cursor: grab
+        @media screen and (max-width: $mobile-breakpoint)
+          grid-row-start: 2
+          grid-row-end: 3
+          grid-column-start: 1
+          grid-column-end: 2
+          cursor: grab
 
       .contacts
         position: absolute
@@ -82,6 +97,8 @@ html, body
         flex-direction: row
         align-content: end
         gap: 16px
+        @media screen and (max-width: $mobile-breakpoint)
+          align-content: center
 
         a
           color: white

@@ -39,8 +39,8 @@ const init = async () => {
 
   const ambientlight = new THREE.AmbientLight(0x77b2db, 2);
 
-  const sunLight = new THREE.PointLight(0xffffff, 6);
-  sunLight.position.set(50, 50, 50);
+  const sunLight = new THREE.PointLight(0xffffff, 7);
+  sunLight.position.set(30, 30, 30);
 
   scene.add(sunLight);
 
@@ -143,12 +143,10 @@ window.addEventListener('resize', () => {
   renderers.renderer.setSize(container.clientWidth, container.clientHeight);
   renderers.composer.setSize(container.clientWidth, container.clientHeight);
 
-  if (renderers.pixelpass.uniforms.value) {
-    renderers.pixelpass.uniforms.value.set(
-      container.clientWidth,
-      container.clientHeight
-    );
-  }
+  renderers.pixelpass.uniforms['resolution'].value.set(
+    container.clientWidth,
+    container.clientHeight
+  );
 });
 
 let clicked = false;
