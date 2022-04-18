@@ -152,18 +152,32 @@ window.addEventListener('resize', () => {
 });
 
 let clicked = false;
+let timeClicked = 0;
 
 window.addEventListener('mousedown', () => {
   clicked = true;
+  speed = 0;
+  speedSum = 0;
+  timeClicked = Date.now();
 });
 
 window.addEventListener('mouseup', () => {
   clicked = false;
+  timeClicked = Date.now() - timeClicked;
+  speed += speedSum / (timeClicked / 50);
 });
+
+const EARTH_SPEED_FACTOR = 1200;
+const EARTH_MOVE_FACTOR = 1900;
+
+let speedSum = 0.3;
 
 canvas.addEventListener('mousemove', (e) => {
   let diff = e.movementX;
-  if (clicked) speed += diff / 1000;
+  if (clicked) {
+    speedSum += diff / EARTH_SPEED_FACTOR;
+    siteObj.rotateY(diff / EARTH_MOVE_FACTOR);
+  }
 });
 
 canvas.addEventListener('mousedown', () => {
