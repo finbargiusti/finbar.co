@@ -13,6 +13,7 @@ html, body
   scroll-snap-type: y mandatory
   background-color: black
   height: 100%
+  margin: 0
 
 #bg
   position: fixed
@@ -45,6 +46,8 @@ $mobile-breakpoint: 800px
       background: url("media/background.png")
       background-size: cover
       background-attachment: fixed
+      position: relative
+      width: 100%
 
       #card
         grid-row-start: 2
@@ -93,12 +96,12 @@ $mobile-breakpoint: 800px
         position: absolute
         bottom: 0px
         padding: 15px
+        left: 0px
         right: 0px
         display: flex
         flex-direction: row
         justify-content: flex-end
-        gap: 16px
-        width: 100vw
+        // gap: 16px
         @media screen and (max-width: $mobile-breakpoint)
           justify-content: center
 
