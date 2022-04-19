@@ -154,14 +154,14 @@ window.addEventListener('resize', () => {
 let clicked = false;
 let timeClicked = 0;
 
-window.addEventListener('mousedown', (e) => {
+canvas.addEventListener('mousedown', (e) => {
   clicked = true;
   speed = 0;
   speedSum = 0;
   timeClicked = Date.now();
 });
 
-window.addEventListener('mouseup', () => {
+canvas.addEventListener('mouseup', () => {
   clicked = false;
   timeClicked = Date.now() - timeClicked;
   speed = speedSum / (timeClicked / 50);
@@ -191,6 +191,6 @@ canvas.addEventListener('mouseup', () => {
 });
 
 // this prevents clicks on mobile
-window.addEventListener('touchend', (event) => {
+canvas.addEventListener('touchend', (event) => {
   event.preventDefault();
 });
