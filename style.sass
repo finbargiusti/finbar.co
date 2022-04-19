@@ -12,6 +12,7 @@ html, body
   font-family: 'Roboto'
   scroll-snap-type: y mandatory
   background-color: black
+  height: 100%
 
 #bg
   position: fixed
@@ -21,13 +22,12 @@ html, body
 $mobile-breakpoint: 800px
 
 #content
-  position: absolute
-  top: 0
-  left: 0
+  width: 100%
+  height: 100%
 
   .section
-    height: 100vh
-    width: 100vw
+    height: 100%
+    width: 100%
     display: grid
     grid-template-columns: 10% 400px auto 40% 10%
     grid-template-rows: 20% 200px auto
@@ -91,14 +91,16 @@ $mobile-breakpoint: 800px
 
       .contacts
         position: absolute
-        bottom: 15px
-        right: 15px
+        bottom: 0px
+        padding: 15px
+        right: 0px
         display: flex
         flex-direction: row
-        align-content: end
+        justify-content: flex-end
         gap: 16px
+        width: 100vw
         @media screen and (max-width: $mobile-breakpoint)
-          align-content: center
+          justify-content: center
 
         a
           color: white
