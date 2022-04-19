@@ -83,11 +83,11 @@ const init = async () => {
 
   return new Promise((resolve) => {
     objloader.load(
-      'media/Earth.glb',
+      'media/earth-clouds.glb',
       (site) => {
         siteObj = site.scene;
         scene.add(siteObj);
-        siteObj.scale.multiplyScalar(0.05);
+        siteObj.scale.multiplyScalar(0.045);
         siteObj.rotation.z = Math.PI / -7;
         mixer = new THREE.AnimationMixer(siteObj);
         animation = site.animations[0];
