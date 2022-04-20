@@ -9,13 +9,12 @@ let downloaded = false;
 window.addEventListener('scroll', () => {
   requestAnimationFrame(() => {
     // Slow scrolling
-    const factor = Math.pow(window.scrollY / (window.innerHeight * 0.3), 6);
+    const factor = Math.pow(window.scrollY / (window.innerHeight * 0.5), 6);
 
     loadbar.style.width = 400 * factor + 'px';
 
     if (factor < 1) {
       downloaded = false;
-      window.scrollTo(0, window.scrollY - (1 - factor) * 4);
     } else {
       if (!downloaded) {
         download();
