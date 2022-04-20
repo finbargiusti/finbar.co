@@ -12,6 +12,7 @@
     "vite-plugin-fonts": "^0.3.0"
   },
   "dependencies": {
+    "rellax": "^1.12.1",
     "sass": "^1.49.9",
     "three": "^0.138.3"
   }

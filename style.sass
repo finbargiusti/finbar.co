@@ -27,15 +27,7 @@ $mobile-breakpoint: 800px
   height: 100%
 
   .section
-    height: 100%
     width: 100%
-    display: grid
-    grid-template-columns: 10% 400px auto 40% 10%
-    grid-template-rows: 20% 200px auto
-    @media screen and (max-width: $mobile-breakpoint)
-      grid-template-columns: 100%
-      grid-template-rows: 200px auto
-      scroll-snap-align: end
 
     #card
       color: #222222
@@ -45,9 +37,17 @@ $mobile-breakpoint: 800px
     &.one
       background: url("media/background.png")
       background-size: cover
+      height: 100%
       background-attachment: fixed
       position: relative
       width: 100%
+      display: grid
+      grid-template-columns: 10% 400px auto 40% 10%
+      grid-template-rows: 20% 200px auto
+      @media screen and (max-width: $mobile-breakpoint)
+        grid-template-columns: 100%
+        grid-template-rows: 200px auto
+        scroll-snap-align: end
 
       #card
         grid-row-start: 2
@@ -92,6 +92,25 @@ $mobile-breakpoint: 800px
           grid-column-end: 2
           cursor: grab
 
+        #earth
+          width: 100%
+          height: 100%
+
+      .swipedown
+        bottom: 0px
+        position: absolute
+        width: 10%
+
+        p
+          -webkit-text-stroke: 2px black solid
+          text-align: center
+          color: white
+          font-size: 24px
+          font-weight: bold
+          font-family: 'Roboto'
+          text-transform: uppercase
+          letter-spacing: 4px
+
       .contacts
         position: absolute
         bottom: 0px
@@ -121,63 +140,30 @@ $mobile-breakpoint: 800px
             outline: 5px solid white
             background-color: rgba(255, 255, 255, 0.2)
 
-    // &.two
-    //   background: url("media/paperBG.jpeg")
-    //   background-repeat: repeat
-    //   position: relative
-    //   background-size: 80%
-    //   overflow: hidden
+    &.two
+      overflow: hidden
+      background-color: ghostwhite
+      height: 30%
+      display: flex
+      align-items: center
+      justify-content: center
 
-    //   #page
-    //     height: 351px
-    //     width: 248px
-    //     transform: scale(0.7) rotate(-35deg)
-    //     box-shadow: 2px 2px 25px 5px rgba(50,50,50,0.26)
-    //     background-color: white
-    //     position: absolute
-    //     top: 20px
-    //     z-index: 1
+      .content
 
-    //   #projects-back
-    //     position: absolute
-    //     top: 0
-    //     left: 0
-    //     z-index: 1
+        .loading-bar
+          width: 400px
+          height: 12px
+          background-color: lightgray
+          border-radius: 6px
+          overflow: hidden
 
-    //   #projects
-    //     background-color: white
-    //     grid-column-start: 2
-    //     grid-column-end: 4
-    //     grid-row-start: 2
-    //     grid-row-end: 4
-    //     outline: 8px #222222 solid
-    //     z-index: 2
-    //     display: flex
-    //     flex-direction: column
+          .loaded
+            background-color: lightblue
+            height: 12px
+            width: 50px
 
-    //     h2
-    //       color: #2d2d2d
-    //       font-size: 48px
-    //       line-height: 100%
-    //       margin: 16px 24px 12px 24px
-    //       font-weight: 300
-
-    //     #project-contain
-    //       flex-grow: 1
-    //       overflow-y: scroll
-    //       scroll-snap-type: x mandatory
-    //       display: flex
-    //       padding-right: 10%
-    //       flex-direction: row
-
-    //       .project
-    //         padding-left: 24px
-    //         height: 100%
-    //         min-width: 90%
-    //         scroll-snap-align: start
-
-    //         .content
-    //           background-color: transparent
-
-    //         &:last-child
-    //           min-width: 100%
+        .downloading
+          text-align: center
+          font-size: 24px
+          color: lightgray
+          margin-bottom: 0
