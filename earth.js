@@ -98,7 +98,6 @@ const init = async () => {
             renderers.composer.render();
           });
         }, 1000 / 30);
-        render();
         resolve();
       },
       undefined,
@@ -178,6 +177,10 @@ canvas.addEventListener('mouseup', () => {
 });
 
 // this prevents clicks on mobile
-canvas.addEventListener('touchend', (event) => {
-  event.preventDefault();
-});
+canvas.addEventListener(
+  'touchend',
+  (event) => {
+    event.preventDefault();
+  },
+  false
+);
