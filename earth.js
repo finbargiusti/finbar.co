@@ -111,11 +111,6 @@ const init = async () => {
 
 init().then(() => {});
 
-document.addEventListener('scroll', () => {
-  if (!loaded) return;
-  requestAnimationFrame(render);
-});
-
 window.addEventListener(
   'resize',
   () => {
@@ -177,10 +172,8 @@ canvas.addEventListener('mouseup', () => {
 });
 
 // this prevents clicks on mobile
-canvas.addEventListener(
-  'touchend',
-  (event) => {
+canvas.addEventListener('touchend', (event) => {
+  if (event.cancellable) {
     event.preventDefault();
-  },
-  false
-);
+  }
+});
