@@ -56,7 +56,6 @@ const init = async () => {
   });
 
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(container.clientWidth, container.clientHeight);
 
   const renderpass = new RenderPass(scene, camera);
   const pixelpass = new ShaderPass(PixelShader);
@@ -111,45 +110,31 @@ const init = async () => {
   });
 };
 
-let oldScroll = 0;
-
-const render = () => {
-  const frame = window.scrollY / window.innerHeight;
-  // make render function, which takes a frame count as input, which will be a function of scroll amount.
-
-  // speed += Math.log(1 + Math.abs(frame - oldScroll)) * 0.1;
-
-  // let diff = (1 - frame) * 0.05;
-
-  // siteObj.scale.y = diff;
-  // siteObj.scale.x = diff;
-  // siteObj.scale.z = diff;
-
-  oldScroll = frame;
-};
-
-init().then(() => {
-  loaded = true;
-  render();
-});
+init().then(() => {});
 
 document.addEventListener('scroll', () => {
   if (!loaded) return;
   requestAnimationFrame(render);
 });
 
-window.addEventListener('resize', () => {
-  camera.aspect = container.clientWidth / container.clientHeight;
-  camera.updateProjectionMatrix();
+window.addEventListener(
+  'resize',
+  () => {
+    requestAnimationFrame(() => {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
 
-  renderers.renderer.setSize(container.clientWidth, container.clientHeight);
-  renderers.composer.setSize(container.clientWidth, container.clientHeight);
+      // renderers.renderer.setSize(container.clientWidth, container.clientHeight);
+      // renderers.composer.setSize(container.clientWidth, container.clientHeight);
 
-  renderers.pixelpass.uniforms['resolution'].value.set(
-    container.clientWidth,
-    container.clientHeight
-  );
-});
+      renderers.pixelpass.uniforms['resolution'].value.set(
+        container.clientWidth,
+        container.clientHeight
+      );
+    });
+  },
+  false
+);
 
 let clicked = false;
 let timeClicked = 0;
@@ -161,11 +146,13 @@ canvas.addEventListener('mousedown', (e) => {
   timeClicked = Date.now();
 });
 
-canvas.addEventListener('mouseup', () => {
-  clicked = false;
-  timeClicked = Date.now() - timeClicked;
-  speed = speedSum / (timeClicked / 50);
-  if (Math.abs(speed) < slowDown) speed = slowDown;
+window.addEventListener('mouseup', () => {
+  if (clicked) {
+    clicked = false;
+    timeClicked = Date.now() - timeClicked;
+    speed = speedSum / (timeClicked / 50);
+    if (Math.abs(speed) < slowDown) speed = slowDown;
+  }
 });
 
 const EARTH_SPEED_FACTOR = 1200;
