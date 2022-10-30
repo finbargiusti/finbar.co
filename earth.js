@@ -1,5 +1,4 @@
 import './style.sass';
-import 'virtual:fonts.css';
 
 import * as THREE from 'three';
 
@@ -17,7 +16,7 @@ const canvas = document.getElementById('earth');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   70,
-  container.clientWidth / container.clientHeight,
+  canvas.clientWidth / canvas.clientHeight,
   0.1,
   2000
 );
@@ -32,9 +31,10 @@ let prevTime = Date.now();
 
 let siteObj;
 
-const slowDown = 0.001;
+const slowDown = 0.0003;
+const baseSpeed = 0.001;
 
-let speed = 0.005;
+let speed = 0.0;
 
 const init = async () => {
   const objloader = new GLTFLoader();
@@ -61,8 +61,8 @@ const init = async () => {
   const pixelpass = new ShaderPass(PixelShader);
 
   pixelpass.uniforms['resolution'].value = new THREE.Vector2(
-    container.clientWidth,
-    container.clientHeight
+    canvas.clientWidth,
+    canvas.clientHeight
   );
   pixelpass.uniforms['pixelSize'].value = 10;
 
@@ -82,7 +82,7 @@ const init = async () => {
 
   return new Promise((resolve) => {
     objloader.load(
-      'media/earth-clouds.glb',
+      '/media/earth-clouds.glb',
       (site) => {
         siteObj = site.scene;
         scene.add(siteObj);
@@ -92,8 +92,10 @@ const init = async () => {
         animation = site.animations[0];
         setInterval(() => {
           requestAnimationFrame(() => {
-            if (speed > 0) speed = Math.max(slowDown, speed - slowDown);
-            if (speed < 0) speed = Math.min(slowDown, speed + slowDown);
+            if (speed > baseSpeed)
+              speed = Math.max(baseSpeed, speed - slowDown);
+            if (speed < baseSpeed)
+              speed = Math.min(baseSpeed, speed + slowDown);
             siteObj.rotateY(speed);
             renderers.composer.render();
           });
@@ -115,15 +117,15 @@ window.addEventListener(
   'resize',
   () => {
     requestAnimationFrame(() => {
-      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
 
       // renderers.renderer.setSize(container.clientWidth, container.clientHeight);
       // renderers.composer.setSize(container.clientWidth, container.clientHeight);
 
       renderers.pixelpass.uniforms['resolution'].value.set(
-        container.clientWidth,
-        container.clientHeight
+        canvas.clientWidth,
+        canvas.clientHeight
       );
     });
   },
@@ -133,20 +135,27 @@ window.addEventListener(
 let clicked = false;
 let timeClicked = 0;
 
+canvas.addEventListener('click', () => {});
+// GRR FUCK YOU SAFARI
+
 canvas.addEventListener('mousedown', (e) => {
   clicked = true;
+  canvas.style.cursor = 'grabbing';
   speed = 0;
   speedSum = 0;
   timeClicked = Date.now();
 });
 
-window.addEventListener('mouseup', () => {
-  if (clicked) {
-    clicked = false;
-    timeClicked = Date.now() - timeClicked;
-    speed = speedSum / (timeClicked / 50);
-    if (Math.abs(speed) < slowDown) speed = slowDown;
-  }
+['mouseup', 'mouseleave'].forEach((even) => {
+  canvas.addEventListener(even, () => {
+    canvas.style.cursor = 'grab';
+    if (clicked) {
+      clicked = false;
+      timeClicked = Date.now() - timeClicked;
+      speed = speedSum / (timeClicked / 50);
+      if (Math.abs(speed) < slowDown) speed = slowDown;
+    }
+  });
 });
 
 const EARTH_SPEED_FACTOR = 1200;
@@ -155,25 +164,19 @@ const EARTH_MOVE_FACTOR = 1900;
 let speedSum = 0;
 
 canvas.addEventListener('mousemove', (e) => {
-  let diff = e.movementX;
-  if (!diff) return;
-  if (clicked) {
-    speedSum += diff / EARTH_SPEED_FACTOR;
-    siteObj.rotateY(diff / EARTH_MOVE_FACTOR);
-  }
-});
-
-canvas.addEventListener('mousedown', () => {
-  canvas.style.cursor = 'grabbing';
-});
-
-canvas.addEventListener('mouseup', () => {
-  canvas.style.cursor = 'grab';
+  setTimeout(() => {
+    let diff = e.movementX;
+    if (!diff) return;
+    if (clicked) {
+      speedSum += diff / EARTH_SPEED_FACTOR;
+      siteObj.rotateY(diff / EARTH_MOVE_FACTOR);
+    }
+  }, 0); // this is to avoid some MAJOR ios safari BULLSHIT
 });
 
 // this prevents clicks on mobile
-canvas.addEventListener('touchend', (event) => {
-  if (event.cancellable) {
-    event.preventDefault();
-  }
-});
+// canvas.addEventListener('touchend', (event) => {
+//   if (event.cancellable) {
+//     event.preventDefault();
+//   }
+// });

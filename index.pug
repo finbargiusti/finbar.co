@@ -1,0 +1,107 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='icon' type='image/svg+xml' href='favicon.svg')
+  link(rel='stylesheet' type='text/css' href='style.sass')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no')
+  title Finbar Giusti
+
+canvas#bg
+
+#business-card
+
+  #card
+
+    h1 FINBAR GIUSTI
+    subtitle Developer &amp;&amp; Designer &amp;&amp; Student
+    p
+      | Tel: +353 83 199 6376 
+      br
+      |             Email: 
+      a(href='mailto:finbar@finbar.co') finbar@finbar.co
+
+  #earth-wrap
+
+    canvas#earth
+
+  .contacts
+
+    a(href='https://www.github.com/finbargiusti') GITHUB
+
+    a#go-to-portfolio(href='#portfolio') PORTFOLIO
+
+    a(href="/media/CV.pdf", target="_blank") CV
+
+#portfolio
+
+
+  -
+    let projects = [
+      {
+        title: 'Drawtogether',
+        description: 'Collaborative drawing tool on the web, which allows users to paint on the same canvas with a variety of tools',
+        tools_used: ['express.js', 'babel', 'javascript', 'html', 'css'],
+        github: 'https://github.com/finbargiusti/drawtogether'
+      },
+      {
+        title: 'Currency Visualizer',
+        description: 'Interactive visualiser for the relative values of different currencies, displayed as circles packed together using a packing tool written in C.',
+        tools_used: ['parcel', 'emscripten', 'c', 'typescript', 'html', 'css'],
+        github: 'https://githnub.com/finbargiusti/currency-visualizer',
+        trylink: 'https://finbargiusti.github.io/currency-visualizer'
+      },
+      {
+        title: 'Kairos',
+        trylink: 'https://kairos.finbar.co',
+        description: 'Interactive promotion page for cryptocurrency stock option trading platform.<br/>All image assets generated using AI, all design done in figma',
+        tools_used: ['vue.js', 'nuxt.js', 'DALLE-2', 'Figma', 'javascript', 'html', 'sass'],
+        github: 'https://github.com/finbargiusti/kairos'
+      },
+      {
+        title: 'Snype',
+        description: 'A work-in-progress quake-style online 2d shooter, with graphics rendered in THREE.js, including a built-in level editor.',
+        tools_used: ['three.js', 'typescript', 'ws'],
+        github: 'https://github.com/finbargiusti/snype'
+      }, 
+      {
+        title: 'finbar.co',
+        description: 'this.',
+        tools_used: ['javascript', 'parcel', 'pug', 'sass', 'three.js'],
+        github: 'https://github.com/finbargiusti/finbar.co'
+      },
+      {
+        title: 'Castlepole',
+        description: 'A corporate website for an irish-based digital electronic shelf label company.',
+        tools_used: ['nuxt', 'vue.js', 'sass'],
+        trylink: 'http://castlepole.com'
+      }
+    ]
+
+  .title 
+    h1 Portfolio
+
+  .projects    
+    each project in projects
+
+      .project
+        .text
+          h2= project.title
+
+          p.description!= project.description
+
+          .tools
+            each tool in project.tools_used
+              span= tool
+        
+
+        .buttons
+          if project.trylink
+            a(target="_blank").try(href=project.trylink)
+              | DEMO
+
+
+          if project.github
+            a(target="_blank").github(href=project.github)
+              img(src="media/github.png", alt="Go to github") 
+
+script(type='module' src='/earth.js')

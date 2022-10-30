@@ -9,7 +9,8 @@
 html, body
   overscroll-behavior-y: none
   overscroll-behavior-x: none
-  font-family: 'Roboto'
+  scroll-behavior: smooth
+  font-family: Avenir, Helvetica, Arial, sans-serif
   // scroll-snap-type: y mandatory
   background-color: black
   height: 100%
@@ -22,148 +23,230 @@ html, body
 
 $mobile-breakpoint: 800px
 
-#content
+#business-card
   width: 100%
+  box-sizing: border-box
+  overflow: hidden
+  background: url("media/background.png")
+  background-size: cover
   height: 100%
+  background-attachment: fixed
+  position: relative
+  width: 100%
+  display: grid
+  grid-template-columns: 10% 400px auto 40% 10%
+  grid-template-rows: 20% 200px auto
 
-  .section
-    width: 100%
+  @media screen and (max-width: $mobile-breakpoint)
+    grid-template-columns: 100%
+    grid-template-rows: 200px auto
+    scroll-snap-align: end
 
-    #card
-      color: #222222
-      background-color: white
-      outline: 8px #222222 solid
+  #card
+    color: #222222
+    background-color: #eeeeee
+    outline: 8px #222222 solid
+    grid-row-start: 2
+    grid-row-end: 3
+    grid-column-start: 2
+    grid-column-end: 3
 
-    &.one
-      background: url("media/background.png")
-      background-size: cover
-      height: 100%
-      background-attachment: fixed
-      position: relative
+    @media screen and (max-width: $mobile-breakpoint)
+      grid-column-start: 1
+      grid-column-end: 2
+      grid-row-start: 1
+      grid-row-end: 2
+
+    h1
+      margin-left: 24px
+      margin-bottom: 0px
+      font-weight: 300
+      font-size: 36px
+
+    subtitle
+      margin-left: 24px
+      color: #333333
+      font-weight: 100
+
+    p
+      color: #333333
+      font-weight: 300
+      margin-left: 24px
+
+      a
+        color: #555555
+
+  #earth-wrap
+    grid-row-start: 1
+    grid-row-end: 4
+    grid-column-start: 3
+    grid-column-end: 6
+
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    @media screen and (max-width: $mobile-breakpoint)
+      grid-row-start: 2
+      grid-row-end: 3
+      grid-column-start: 1
+      grid-column-end: 2
+      cursor: grab
+
+    #earth
       width: 100%
-      display: grid
-      grid-template-columns: 10% 400px auto 40% 10%
-      grid-template-rows: 20% 200px auto
+      max-width: 95vh
+      aspect-ratio: 1 / 1
+
       @media screen and (max-width: $mobile-breakpoint)
-        grid-template-columns: 100%
-        grid-template-rows: 200px auto
-        scroll-snap-align: end
+        max-width: 85vh
 
-      #card
-        grid-row-start: 2
-        grid-row-end: 3
-        grid-column-start: 2
-        grid-column-end: 3
-        @media screen and (max-width: $mobile-breakpoint)
-          grid-column-start: 1
-          grid-column-end: 2
-          grid-row-start: 1
-          grid-row-end: 2
+  .swipedown
+    bottom: 0px
+    position: absolute
+    width: 10%
 
-        h1
-          margin-left: 24px
-          margin-bottom: 0px
-          font-family: 'Roboto'
-          font-weight: 300
-          font-size: 36px
+    p
+      -webkit-text-stroke: 2px black solid
+      text-align: center
+      color: white
+      font-size: 24px
+      font-weight: bold
+      text-transform: uppercase
+      letter-spacing: 4px
 
-        subtitle
-          margin-left: 24px
-          color: #333333
-          font-weight: 100
+  .contacts
+    position: absolute
+    bottom: 0px
+    padding: 15px
+    left: 0px
+    right: 0px
+    display: flex
+    flex-direction: row
+    justify-content: flex-end
+    gap: 16px
+    @media screen and (max-width: $mobile-breakpoint)
+      justify-content: center
 
-        p
-          color: #333333
-          font-weight: 300
-          margin-left: 24px
+    a
+      color: #eeeeee
+      padding: 8px 12px 8px 12px
+      outline: 2px solid #eeeeee
+      text-decoration: none
+      font-size: 22px
+      font-family: monospace
+      font-weight: 300
+      letter-spacing: 2px
+      transition: outline 0.2s, background-color 0.2s
+      background-color: rgba(255, 255, 255, 0)
 
-          a
-            color: #555555
+      &:hover
+        outline: 5px solid white
+        background-color: rgba(255, 255, 255, 0.2)
 
-      #earth-wrap
-        grid-row-start: 1
-        grid-row-end: 4
-        grid-column-start: 3
-        grid-column-end: 6
-        @media screen and (max-width: $mobile-breakpoint)
-          grid-row-start: 2
-          grid-row-end: 3
-          grid-column-start: 1
-          grid-column-end: 2
-          cursor: grab
+#portfolio
+  min-height: 100%
+  width: 100%
+  background-color: #eeeeee
+  display: grid
+  grid-template-columns: auto 1fr
+  grid-template-rows: 1fr
+  ///I
+  grid-template-areas: "title projects"
 
-        #earth
+  @media screen and (max-width: $mobile-breakpoint)
+    grid-template-rows: auto 1fr
+    grid-template-columns: 1fr
+    grid-template-areas: "title" "projects"
+
+  .title
+    grid-area: title
+
+    h1
+      font-size: 48px
+      color: #333333
+      margin: 20px 0px 0px 20px
+      position: sticky
+      top: 20px
+      @media screen and (max-width: $mobile-breakpoint)
+        margin: 20px 0px -20px 60px
+
+  .projects
+    grid-area: projects
+    display: flex
+    flex-direction: column
+    padding-top: 40px
+    padding-right: 40px
+    padding-bottom: 80px
+    padding-left: 40px
+    gap: 20px
+
+    .project
+      padding: 20px 10px 10px 20px
+      box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 2px
+      max-width: 700px
+      border: 1px #aaaaaa solid
+      border-radius: 20px
+      display: grid
+      grid-template-columns: 1fr auto
+      grid-template-rows: 1fr auto
+      grid-template-areas: "text text" ".buttons"
+      transition: box-shadow 0.2s
+
+      &:hover
+        box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 5px
+
+      .text
+        grid-area: text
+
+        h2
+          font-size: 32px
+          margin: 0
+          color: #444444
+
+        .description
+          color: #444444
+          margin: 0
+
+        .tools
+          margin-top: 8px
           width: 100%
-          height: 100%
+          overflow-x: auto
+          display: flex
+          gap: 8px
 
-      .swipedown
-        bottom: 0px
-        position: absolute
-        width: 10%
+          span
+            color: #a5a5a5
 
-        p
-          -webkit-text-stroke: 2px black solid
-          text-align: center
-          color: white
-          font-size: 24px
-          font-weight: bold
-          font-family: 'Roboto'
-          text-transform: uppercase
-          letter-spacing: 4px
-
-      .contacts
-        position: absolute
-        bottom: 0px
-        padding: 15px
-        left: 0px
-        right: 0px
+      .buttons
+        grid-area: buttons
         display: flex
-        flex-direction: row
-        justify-content: flex-end
-        // gap: 16px
-        @media screen and (max-width: $mobile-breakpoint)
-          justify-content: center
+        align-items: center
+        gap: 8px
 
-        a
-          color: white
+        a.try
+          color: #444444
           padding: 8px 12px 8px 12px
-          outline: 2px solid white
           text-decoration: none
           font-size: 22px
           font-family: monospace
-          font-weight: 300
+          font-weight: 700
           letter-spacing: 2px
           transition: outline 0.2s, background-color 0.2s
-          background-color: rgba(255, 255, 255, 0)
+          background-color: rgba(44, 44, 44, 0)
 
           &:hover
-            outline: 5px solid white
-            background-color: rgba(255, 255, 255, 0.2)
+            color: #222222
 
-    &.two
-      overflow: hidden
-      background-color: ghostwhite
-      height: 50%
-      display: flex
-      align-items: center
-      justify-content: center
+        a.github
+          display: block
+          height: 40px
+          width: 40px
 
-      .content
+          img
+            height: 100%
+            opacity: 0.8
 
-        .loading-bar
-          width: 400px
-          height: 12px
-          background-color: lightgray
-          border-radius: 6px
-          overflow: hidden
-
-          .loaded
-            background-color: lightblue
-            height: 12px
-            width: 50px
-
-        .downloading
-          text-align: center
-          font-size: 24px
-          color: lightgray
-          margin-bottom: 0
+            &:hover
+              opacity: 1
