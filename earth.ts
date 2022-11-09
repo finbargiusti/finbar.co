@@ -8,10 +8,12 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import { PixelShader } from 'three/examples/jsm/shaders/PixelShader';
 
-const renderers = {};
+import interact from 'interactjs';
+
+const renderers: { composer?: any; renderer?: any; pixelpass?: any } = {};
 
 const container = document.querySelector('#earth-wrap');
-const canvas = document.getElementById('earth');
+const canvas = document.getElementById('earth') as HTMLCanvasElement;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -64,7 +66,7 @@ const init = async () => {
     canvas.clientWidth,
     canvas.clientHeight
   );
-  pixelpass.uniforms['pixelSize'].value = 10;
+  pixelpass.uniforms['pixelSize'].value = 8;
 
   const composer = new EffectComposer(renderer);
 
@@ -80,7 +82,7 @@ const init = async () => {
 
   camera.lookAt(0, 0, 0);
 
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     objloader.load(
       '/media/earth-clouds.glb',
       (site) => {
@@ -135,43 +137,37 @@ window.addEventListener(
 let clicked = false;
 let timeClicked = 0;
 
-canvas.addEventListener('click', () => {});
-// GRR FUCK YOU SAFARI
-
-canvas.addEventListener('mousedown', (e) => {
-  clicked = true;
-  canvas.style.cursor = 'grabbing';
-  speed = 0;
-  speedSum = 0;
-  timeClicked = Date.now();
-});
-
-['mouseup', 'mouseleave'].forEach((even) => {
-  canvas.addEventListener(even, () => {
-    canvas.style.cursor = 'grab';
-    if (clicked) {
-      clicked = false;
-      timeClicked = Date.now() - timeClicked;
-      speed = speedSum / (timeClicked / 50);
-      if (Math.abs(speed) < slowDown) speed = slowDown;
-    }
-  });
-});
-
 const EARTH_SPEED_FACTOR = 1200;
 const EARTH_MOVE_FACTOR = 1900;
 
 let speedSum = 0;
 
-canvas.addEventListener('mousemove', (e) => {
-  setTimeout(() => {
-    let diff = e.movementX;
-    if (!diff) return;
-    if (clicked) {
-      speedSum += diff / EARTH_SPEED_FACTOR;
-      siteObj.rotateY(diff / EARTH_MOVE_FACTOR);
-    }
-  }, 0); // this is to avoid some MAJOR ios safari BULLSHIT
+interact(canvas).draggable({
+  listeners: {
+    start() {
+      clicked = true;
+      speed = 0;
+      speedSum = 0;
+      timeClicked = Date.now();
+    },
+    move(event) {
+      let diff = event.dx;
+      if (!diff) return;
+      if (clicked) {
+        speedSum += diff / EARTH_SPEED_FACTOR;
+        siteObj.rotateY(diff / EARTH_MOVE_FACTOR);
+      }
+    },
+    end() {
+      canvas.style.cursor = 'grab';
+      if (clicked) {
+        clicked = false;
+        timeClicked = Date.now() - timeClicked;
+        speed = speedSum / (timeClicked / 50);
+        if (Math.abs(speed) < slowDown) speed = slowDown;
+      }
+    },
+  },
 });
 
 // this prevents clicks on mobile
