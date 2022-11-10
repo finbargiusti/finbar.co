@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "parcel index.pug",
-    "build": "parcel build index.pug --dist-dir docs",
+    "build": "parcel build index.pug --dist-dir docs --no-source-maps",
     "preview": "vite preview"
   },
   "devDependencies": {
