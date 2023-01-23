@@ -98,6 +98,13 @@ $mobile-breakpoint: 800px
       width: 100%
       max-width: 95vh
       aspect-ratio: 1 / 1
+      opacity: 1
+      filter: blur(0px)
+      transition: opacity 0.2s, filter 1.5s
+
+      &.unloaded
+        opacity: 0
+        filter: blur(10px)
 
       @media screen and (max-width: $mobile-breakpoint)
         max-width: 85vh
