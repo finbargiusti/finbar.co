@@ -14,14 +14,14 @@ function makeObservables() {
 
         if (!entry.isIntersecting) return;
 
-        if (entry.intersectionRatio > 0.1) {
+        if (entry.intersectionRatio > 0) {
           t.classList.add('visible');
         }
       });
     },
     {
       root: null,
-      rootMargin: '0px 0px 0px 0px',
+      rootMargin: '0px',
       threshold: 1.0,
     }
   );
