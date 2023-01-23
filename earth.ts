@@ -113,7 +113,9 @@ const init = async () => {
   });
 };
 
-init().then(() => {});
+init().then(() => {
+  canvas.classList.remove('unloaded');
+});
 
 window.addEventListener(
   'resize',
