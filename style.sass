@@ -100,11 +100,11 @@ $mobile-breakpoint: 800px
       aspect-ratio: 1 / 1
       opacity: 1
       filter: blur(0px)
-      transition: opacity 0.2s, filter 1.5s
+      transition: opacity 0.6s ease-out, filter 1.5s ease-out 0.4s
 
       &.unloaded
         opacity: 0
-        filter: blur(10px)
+        filter: blur(20px)
 
       @media screen and (max-width: $mobile-breakpoint)
         max-width: 85vh
@@ -203,7 +203,7 @@ $mobile-breakpoint: 800px
       background-color: #f3f3f3
       opacity: 0
       transform: translateY(10px)
-      transition: opacity 0.4s ease-in-out 0.2s, transform 0.4s ease-in-out 0.2s
+      transition: opacity 0.4s ease-in-out 0.1s, transform 0.4s ease-in-out 0.1s
 
       &.visible
         opacity: 1
