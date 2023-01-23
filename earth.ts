@@ -36,7 +36,7 @@ let siteObj;
 const slowDown = 0.0003;
 const baseSpeed = 0.001;
 
-let speed = 0.0;
+let speed = 0.1;
 
 const init = async () => {
   const objloader = new GLTFLoader();

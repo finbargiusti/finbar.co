@@ -194,6 +194,13 @@ $mobile-breakpoint: 800px
       grid-template-areas: "text text" ".buttons"
       transition: box-shadow 0.2s
       background-color: #f3f3f3
+      opacity: 0
+      transform: translateY(10px)
+      transition: opacity 0.4s ease-in-out 0.2s, transform 0.4s ease-in-out 0.2s
+
+      &.visible
+        opacity: 1
+        transform: translateY(0px)
 
       &:hover
         box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 5px
