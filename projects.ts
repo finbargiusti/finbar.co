@@ -1,4 +1,5 @@
 function makeObservables() {
+  // PolyFill
   if (typeof IntersectionObserver === undefined) {
     (
       document.querySelectorAll('.project') as NodeListOf<HTMLDivElement>
