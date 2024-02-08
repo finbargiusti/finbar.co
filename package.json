@@ -15,6 +15,7 @@
     "vite-plugin-fonts": "^0.3.0"
   },
   "dependencies": {
+    "@types/three": "^0.148.0",
     "interactjs": "^1.10.17",
     "parcel": "^2.7.0",
     "rellax": "^1.12.1",
