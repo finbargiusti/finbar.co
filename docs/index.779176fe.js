@@ -1,1 +1,0 @@
-window.onload=function(){const o=new IntersectionObserver((o=>{o.forEach((o=>{const e=o.target;o.isIntersecting&&o.intersectionRatio>.1&&e.classList.add("visible")}))}),{root:null,rootMargin:"0px 0px 0px 0px",threshold:1});document.querySelectorAll(".project").forEach((e=>{o.observe(e)}))};
