@@ -75,7 +75,7 @@ const init = async () => {
 
   const objects = [
       '/media/earth.glb',
-      '/media/laptop.glb',
+      '/media/moon.glb',
   ];
 
   return new Promise<void>((resolve) => {
