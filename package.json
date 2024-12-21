@@ -17,7 +17,7 @@
     "parcel-reporter-static-files-copy": ">=1.4.0",
     "rellax": ">=1.12.1",
     "sass": ">=1.49.9",
-    "three": ">=0.138.3",
+    "three": "0.138.3",
     "vite": ">=2.8.0",
     "vite-plugin-fonts": ">=0.3.0"
   }
