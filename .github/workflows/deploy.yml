@@ -3,7 +3,7 @@ name: Build with parcel
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -22,7 +22,6 @@ jobs:
       run: |
         npm install  
 
-    # Run the build process (adapt this step to your build tool)
     - name: Build static website
       run: |
         npm run build
