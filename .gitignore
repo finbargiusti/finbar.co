@@ -1,5 +1,6 @@
 package-lock.json
 dist/
+docs/
 .cache
 node_modules/
 build/
