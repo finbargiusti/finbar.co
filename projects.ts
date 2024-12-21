@@ -2,7 +2,7 @@ function makeObservables() {
   // PolyFill
   if (typeof IntersectionObserver === undefined) {
     (
-      document.querySelectorAll('.project') as NodeListOf<HTMLDivElement>
+      document.querySelectorAll('.listitem') as NodeListOf<HTMLDivElement>
     ).forEach((n) => {
       n.classList.add('visible');
     });
@@ -27,7 +27,7 @@ function makeObservables() {
     }
   );
 
-  document.querySelectorAll('.project').forEach((n) => {
+  document.querySelectorAll('.listitem').forEach((n) => {
     observer.observe(n);
   });
 }

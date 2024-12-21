@@ -156,112 +156,125 @@ $mobile-breakpoint: 800px
   min-height: 100%
   width: 100%
   background-color: #eeeeee
-  display: grid
-  grid-template-columns: auto 1fr
-  grid-template-rows: 1fr
-  ///I
-  grid-template-areas: "title projects"
 
-  @media screen and (max-width: $mobile-breakpoint)
-    grid-template-rows: auto 1fr
-    grid-template-columns: 1fr
-    grid-template-areas: "title" "projects"
+  .listcontainer
+    width: 100%
+    display: grid
+    grid-template-columns: 300px 1fr
+    grid-template-rows: 1fr
+    ///I
+    grid-template-areas: "title listbox"
 
-  .title
-    grid-area: title
+    @media screen and (max-width: $mobile-breakpoint)
+      grid-template-rows: auto 1fr
+      grid-template-columns: 1fr
+      grid-template-areas: "title" "listbox"
 
-    h1
-      font-size: 48px
-      color: #333333
-      margin: 20px 0px 0px 20px
-      position: sticky
-      top: 20px
-      @media screen and (max-width: $mobile-breakpoint)
-        margin: 20px 0px -20px 60px
+    .title
+      grid-area: title
 
-  .projects
-    grid-area: projects
-    display: flex
-    flex-direction: column
-    padding-top: 40px
-    padding-right: 40px
-    padding-bottom: 80px
-    padding-left: 40px
-    gap: 20px
+      h1
+        font-size: 48px
+        color: #333333
+        margin: 20px 0px 0px 20px
+        position: sticky
+        top: 20px
+        @media screen and (max-width: $mobile-breakpoint)
+          margin: 20px 0px -20px 60px
 
-    .project
-      padding: 20px 10px 10px 20px
-      box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 2px
-      max-width: 700px
-      border: 1px #aaaaaa solid
-      border-radius: 20px
-      display: grid
-      grid-template-columns: 1fr auto
-      grid-template-rows: 1fr auto
-      grid-template-areas: "text text" ".buttons"
-      transition: box-shadow 0.2s
-      background-color: #f3f3f3
-      opacity: 0
-      transform: translateY(10px)
-      transition: opacity 0.4s ease-in-out 0.1s, transform 0.4s ease-in-out 0.1s, box-shadow 0.2s ease-in-out
+    .listbox
+      grid-area: listbox
+      display: flex
+      flex-direction: column
+      padding-top: 40px
+      padding-right: 40px
+      padding-bottom: 80px
+      padding-left: 40px
+      gap: 20px
 
-      &.visible
-        opacity: 1
-        transform: translateY(0px)
+      .listitem
+        padding: 20px 10px 10px 20px
+        box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 2px
+        max-width: 700px
+        border: 1px #aaaaaa solid
+        border-radius: 20px
+        display: grid
 
-      &:hover
-        box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 5px
+        &.project
+          grid-template-columns: 1fr auto
+          grid-template-rows: 1fr auto
+          grid-template-areas: "text text" ".buttons"
+        &.experience
+          grid-template-columns: 1fr auto
+          grid-template-rows: 1fr auto
+          grid-template-areas: "text text" ".dates"
 
-      .text
-        grid-area: text
+        transition: box-shadow 0.2s
+        background-color: #f3f3f3
+        opacity: 0
+        transform: translateY(10px)
+        transition: opacity 0.4s ease-in-out 0.1s, transform 0.4s ease-in-out 0.1s, box-shadow 0.2s ease-in-out
 
-        h2
-          font-size: 32px
-          margin: 0
-          color: #444444
+        &.visible
+          opacity: 1
+          transform: translateY(0px)
 
-        .description
-          color: #444444
-          margin: 0
+        &:hover
+          box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 5px
 
-        .tools
-          margin-top: 8px
-          width: 100%
-          overflow-x: auto
+        .text
+          grid-area: text
+
+          h2
+            font-size: 32px
+            margin: 0
+            color: #444444
+
+          .description
+            color: #444444
+            margin: 0
+
+          .tools
+            margin-top: 8px
+            width: 100%
+            overflow-x: auto
+            display: flex
+            gap: 8px
+
+            span
+              color: #a5a5a5
+
+        .dates
+          grid-area: dates
+
+        .buttons
+          grid-area: buttons
           display: flex
+          align-items: center
           gap: 8px
 
-          span
-            color: #a5a5a5
-
-      .buttons
-        grid-area: buttons
-        display: flex
-        align-items: center
-        gap: 8px
-
-        a.try
-          color: #444444
-          padding: 8px 12px 8px 12px
-          text-decoration: none
-          font-size: 22px
-          font-family: monospace
-          font-weight: 700
-          letter-spacing: 2px
-          transition: outline 0.2s, background-color 0.2s
-          background-color: rgba(44, 44, 44, 0)
-
-          &:hover
-            color: #222222
-
-        a.github
-          display: block
-          height: 40px
-          width: 40px
-
-          img
-            height: 100%
-            opacity: 0.8
+          a.try
+            color: #444444
+            padding: 8px 12px 8px 12px
+            text-decoration: none
+            font-size: 22px
+            font-family: monospace
+            font-weight: 700
+            letter-spacing: 2px
+            transition: outline 0.2s, background-color 0.2s
+            background-color: rgba(44, 44, 44, 0)
 
             &:hover
-              opacity: 1
+              color: #222222
+
+          a.github
+            display: block
+            height: 40px
+            width: 40px
+
+            img
+              height: 100%
+              opacity: 0.8
+
+              &:hover
+                opacity: 1
