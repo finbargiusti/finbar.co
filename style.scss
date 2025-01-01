@@ -222,9 +222,10 @@ $mobile-breakpoint: 800px;
           grid-template-areas: "text text" ".buttons";
         }
         &.experience {
-          grid-template-columns: 1fr auto;
-          grid-template-rows: 1fr auto;
-          grid-template-areas: "text text" ".dates";
+          grid-template-columns: 1fr ;
+          grid-template-rows: 1fr ;
+          grid-template-areas: "text";
+          padding-bottom: 30px;
         }
         transition: box-shadow 0.2s;
         background-color: #f3f3f3;
@@ -251,6 +252,11 @@ $mobile-breakpoint: 800px;
             color: #444444;
             margin: 0;
           }
+          .dates {
+            color: #a5a5a5;
+            margin: 0;
+            margin-top: 8px;
+          }
           .description {
             color: #444444;
             margin: 0;
@@ -266,9 +272,6 @@ $mobile-breakpoint: 800px;
               color: #a5a5a5;
             }
           }
-        }
-        .dates {
-          grid-area: dates;
         }
         .buttons {
           grid-area: buttons;
