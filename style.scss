@@ -193,8 +193,11 @@ $mobile-breakpoint: 800px;
         margin: 20px 0px 0px 20px;
         position: sticky;
         top: 20px;
+        border-right: 2px solid #d5d5d5;
         @media screen and (max-width: $mobile-breakpoint) {
-          margin: 20px 0px -20px 60px;
+          margin: 20px 60px -30px 60px;
+          padding-bottom: 10px;
+          border-bottom: 2px solid #d5d5d5;
         }
       }
     }
@@ -202,17 +205,18 @@ $mobile-breakpoint: 800px;
       grid-area: listbox;
       display: flex;
       flex-direction: column;
-      padding-top: 40px;
+      padding-top: 24px;
       padding-right: 40px;
       padding-bottom: 80px;
-      padding-left: 40px;
+      padding-left: 24px;
       gap: 20px;
 
       .listitem {
         padding: 20px 10px 10px 20px;
-        box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 2px;
+        box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 4px;
         max-width: 700px;
-        border: 1px #aaaaaa solid;
+        background-color: transparent;
+        border: 1px transparent solid;
         border-radius: 20px;
         display: grid;
 
@@ -228,7 +232,6 @@ $mobile-breakpoint: 800px;
           padding-bottom: 30px;
         }
         transition: box-shadow 0.2s;
-        background-color: #f3f3f3;
         opacity: 0;
         transform: translateY(10px);
         transition: opacity 0.4s ease-in-out 0.1s, transform 0.4s ease-in-out 0.1s, box-shadow 0.2s ease-in-out;
@@ -236,6 +239,7 @@ $mobile-breakpoint: 800px;
         &.visible {
           opacity: 1;
           transform: translateY(0px);
+          box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 0px;
         }
         &:hover {
           box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 5px;
