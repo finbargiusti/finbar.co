@@ -28,13 +28,14 @@ head
 
     a(href='https://www.github.com/finbargiusti') GITHUB
 
+    a#go-to-experience(href='#experience') EXPERIENCE
     a#go-to-portfolio(href='#portfolio') PORTFOLIO
 
     a(href="/media/CV.pdf", target="_blank") CV
 
-#portfolio
+#textinfo
 
-  .listcontainer
+  .listcontainer#experience
     -
       let experience = [
         {
@@ -58,7 +59,7 @@ head
 
             p.dates= job.when[0] + ' - ' + job.when[1]
 
-  .listcontainer
+  .listcontainer#portfolio
     -
       let projects = [
         {

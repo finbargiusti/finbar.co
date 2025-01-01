@@ -4,7 +4,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 html,
 body {
@@ -35,19 +35,19 @@ $mobile-breakpoint: 800px;
   position: relative;
   width: 100%;
   display: grid;
-  grid-template-columns: 10% 400px auto 40% 10%;
-  grid-template-rows: 20% 200px auto;
+  grid-template-columns: 10% 25rem auto 50% auto;
+  grid-template-rows: 20% 12.5rem auto;
 
   @media screen and (max-width: $mobile-breakpoint) {
     grid-template-columns: 100%;
-    grid-template-rows: 200px auto;
+    grid-template-rows: 12.5rem auto;
     scroll-snap-align: end;
   }
 
   #card {
     color: #222222;
     background-color: #eeeeee;
-    outline: 8px #222222 solid;
+    outline: 0.5rem #222222 solid;
     grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 2;
@@ -61,20 +61,20 @@ $mobile-breakpoint: 800px;
     }
 
     h1 {
-      margin-left: 24px;
+      margin-left: 2rem;
       margin-bottom: 0px;
       font-weight: 300;
-      font-size: 36px;
+      font-size: 2.5rem;
     }
     subtitle {
-      margin-left: 24px;
+      margin-left: 2rem;
       color: #333333;
       font-weight: 100;
     }
     p {
       color: #333333;
       font-weight: 300;
-      margin-left: 24px;
+      margin-left: 2rem;
 
       a {
         color: #555555;
@@ -84,8 +84,8 @@ $mobile-breakpoint: 800px;
   #object-wrap {
     grid-row-start: 1;
     grid-row-end: 4;
-    grid-column-start: 3;
-    grid-column-end: 6;
+    grid-column-start: 4;
+    grid-column-end: 5;
 
     display: flex;
     flex-direction: column;
@@ -123,19 +123,19 @@ $mobile-breakpoint: 800px;
     width: 10%;
 
     p {
-      -webkit-text-stroke: 2px black solid;
+      -webkit-text-stroke: 0.16 black solid;
       text-align: center;
       color: white;
-      font-size: 24px;
+      font-size: 2rem;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 4px;
+      letter-spacing: 0.25rem;
     }
   }
   .contacts {
     position: absolute;
     bottom: 0px;
-    padding: 15px;
+    padding: 1rem;
     left: 0px;
     right: 0px;
     display: flex;
@@ -148,32 +148,33 @@ $mobile-breakpoint: 800px;
 
     a {
       color: #eeeeee;
-      padding: 8px 12px 8px 12px;
-      outline: 2px solid #eeeeee;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      outline: 0.2rem solid #eeeeee;
       text-decoration: none;
-      font-size: 22px;
+      font-size: 1.5rem;
       font-family: monospace;
       font-weight: 300;
-      letter-spacing: 2px;
+      letter-spacing: 0.1rem;
       transition: outline 0.2s, background-color 0.2s;
       background-color: rgba(255, 255, 255, 0);
 
       &:hover {
-        outline: 5px solid white;
+        outline: 0.5rem solid white;
         background-color: rgba(255, 255, 255, 0.2);
       }
     }
   }
 }
-#portfolio {
+#textinfo {
   min-height: 100%;
   width: 100%;
   background-color: #eeeeee;
 
+
   .listcontainer {
     width: 100%;
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 20rem 1fr;
     grid-template-rows: 1fr;
     ///I
     grid-template-areas: "title listbox";
@@ -186,18 +187,22 @@ $mobile-breakpoint: 800px;
 
     .title {
       grid-area: title;
+      position: relative;
+      padding-top: 1rem;
 
       h1 {
-        font-size: 48px;
+        font-size: 3rem;
         color: #333333;
-        margin: 20px 0px 0px 20px;
         position: sticky;
-        top: 20px;
-        border-right: 2px solid #d5d5d5;
+        top: 1rem;
+        margin: 1rem 0 1rem 1rem;
+        border-right: 3px solid #a5a5a5;
         @media screen and (max-width: $mobile-breakpoint) {
-          margin: 20px 60px -30px 60px;
-          padding-bottom: 10px;
-          border-bottom: 2px solid #d5d5d5;
+          margin: 0px 2rem 0px 2rem;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          border-right: none;
+          border-bottom: 2px solid #a5a5a5;
         }
       }
     }
@@ -205,25 +210,29 @@ $mobile-breakpoint: 800px;
       grid-area: listbox;
       display: flex;
       flex-direction: column;
-      padding-top: 24px;
-      padding-right: 40px;
-      padding-bottom: 80px;
-      padding-left: 24px;
-      gap: 20px;
+      padding-top: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 4rem;
+      padding-left: 2rem;
+      gap: 2rem;
 
       .listitem {
-        padding: 20px 10px 10px 20px;
-        box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 4px;
+        padding: 0 0px 00px 0;
         max-width: 700px;
         background-color: transparent;
-        border: 1px transparent solid;
-        border-radius: 20px;
+        border:none;
+        border-radius: 0px;
         display: grid;
+
+        &:not(:first-child) {
+          border-top: 2px dashed #d5d5d5;
+          padding-top: 20px;
+        }
 
         &.project {
           grid-template-columns: 1fr auto;
           grid-template-rows: 1fr auto;
-          grid-template-areas: "text text" ".buttons";
+          grid-template-areas: "text text" "buttons.";
         }
         &.experience {
           grid-template-columns: 1fr ;
@@ -231,7 +240,6 @@ $mobile-breakpoint: 800px;
           grid-template-areas: "text";
           padding-bottom: 30px;
         }
-        transition: box-shadow 0.2s;
         opacity: 0;
         transform: translateY(10px);
         transition: opacity 0.4s ease-in-out 0.1s, transform 0.4s ease-in-out 0.1s, box-shadow 0.2s ease-in-out;
@@ -239,17 +247,17 @@ $mobile-breakpoint: 800px;
         &.visible {
           opacity: 1;
           transform: translateY(0px);
-          box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 0px;
         }
         &:hover {
-          box-shadow: rgba(170, 170, 160, 0.2) 0px 0px 0px 5px;
         }
         .text {
           grid-area: text;
 
           h2 {
-            font-size: 32px;
+            font-size: 2em; // 32px;
             margin: 0;
+            margin-bottom: 0.25em;
+            line-height:1;
             color: #444444;
           }
           .company {
@@ -279,18 +287,18 @@ $mobile-breakpoint: 800px;
         }
         .buttons {
           grid-area: buttons;
+          padding-top: 1rem;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 1rem;
 
           a.try {
             color: #444444;
-            padding: 8px 12px 8px 12px;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 1.5rem;
             font-family: monospace;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 0.1rem;
             transition: outline 0.2s, background-color 0.2s;
             background-color: rgba(44, 44, 44, 0);
 
@@ -300,8 +308,8 @@ $mobile-breakpoint: 800px;
           }
           a.github {
             display: block;
-            height: 40px;
-            width: 40px;
+            height: 2.5rem;
+            width: 2.5rem;
 
             img {
               height: 100%;
