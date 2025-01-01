@@ -2,7 +2,7 @@ doctype html
 head
   meta(charset='UTF-8')
   link(rel='icon' type='image/svg+xml' href='favicon.svg')
-  link(rel='stylesheet' type='text/css' href='style.sass')
+  link(rel='stylesheet' type='text/css' href='style.scss')
   meta(name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no')
   title Finbar Giusti
 
@@ -51,8 +51,11 @@ head
       each job in experience
         .listitem.experience
           .text
-            h2= job.title
-            p.company= job.company
+
+            h2= job.company
+
+            p.company= job.title
+
             .dates
               p=job.when[0] + ' - ' + job.when[1]
 
@@ -119,12 +122,12 @@ head
 
           .buttons
             if project.trylink
-              a(target="_blank").try(href=project.trylink)
+              a.try(href=project.trylink, target="_blank")
                 | DEMO
 
 
             if project.github
-              a(target="_blank").github(href=project.github)
+              a.github(href=project.github, target="_blank")
                 img(src="media/github.png", alt="Go to github") 
 
 script(type='module' src='/object.ts')
