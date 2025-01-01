@@ -134,6 +134,7 @@ $mobile-breakpoint: 800px;
   }
   .contacts {
     position: absolute;
+    flex-wrap: wrap;
     bottom: 0px;
     padding: 1rem;
     left: 0px;
