@@ -23,9 +23,10 @@ body,
   top: 0;
   left: 0;
 }
-$mobile-breakpoint: 800px;
+$mobile-breakpoint: 50rem;
 
 #business-card {
+  $alternate-breakpoint: 75rem;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -36,12 +37,20 @@ $mobile-breakpoint: 800px;
   position: relative;
   width: 100%;
   display: grid;
-  grid-template-columns: 10% 25rem auto 50% auto;
-  grid-template-rows: 20% 12.5rem auto;
+  grid-template-columns: auto 25rem auto 50% auto;
+  grid-template-rows: 1fr 12.5rem 5fr;
+  grid-template-areas: ". . object object object" " . card object object object" ". . object object object";
+
+  @media screen and (max-width: $alternate-breakpoint) {
+    grid-template-columns: auto 25rem auto;
+    grid-template-rows: 1fr 12.5rem 8fr;
+    grid-template-areas: ". . ." ". card ." "object object object";
+  }
 
   @media screen and (max-width: $mobile-breakpoint) {
     grid-template-columns: 100%;
     grid-template-rows: 12.5rem auto;
+    grid-template-areas: "card" "object";
     scroll-snap-align: end;
   }
 
@@ -49,22 +58,14 @@ $mobile-breakpoint: 800px;
     color: #222222;
     background-color: #eeeeee;
     outline: 0.5rem #222222 solid;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    grid-column-start: 2;
-    grid-column-end: 3;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      grid-column-start: 1;
-      grid-column-end: 2;
-      grid-row-start: 1;
-      grid-row-end: 2;
-    }
+    grid-area: card;
+    z-index: 1;
 
     h1 {
       margin-left: 2rem;
       margin-bottom: 0px;
       font-weight: 300;
+      letter-spacing: 0.1rem;
       font-size: 2.5rem;
     }
     subtitle {
@@ -83,23 +84,17 @@ $mobile-breakpoint: 800px;
     }
   }
   #object-wrap {
-    grid-row-start: 1;
-    grid-row-end: 4;
-    grid-column-start: 4;
-    grid-column-end: 5;
+    grid-area: object;
 
+    @media screen and (max-width: $alternate-breakpoint) {
+      grid-row-start: 1;
+    }
+
+    z-index: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      grid-row-start: 2;
-      grid-row-end: 3;
-      grid-column-start: 1;
-      grid-column-end: 2;
-      cursor: grab;
-    }
 
     #object {
       width: 100%;
@@ -176,10 +171,16 @@ $mobile-breakpoint: 800px;
   .listcontainer {
     width: 100%;
     display: grid;
-    grid-template-columns: 20rem 1fr;
+    grid-template-columns: 1fr 20rem 50rem 1fr;
+    @media screen and (max-width: 100rem) {
+      grid-template-columns: 1fr 20rem 40rem 1fr;
+    }
+    @media screen and (max-width: 80rem) {
+      grid-template-columns: 1fr 16rem 30rem 1fr;
+    }
     grid-template-rows: 1fr;
     ///I
-    grid-template-areas: "title listbox";
+    grid-template-areas: ". title listbox .";
 
     @media screen and (max-width: $mobile-breakpoint) {
       grid-template-rows: auto 1fr;
@@ -193,7 +194,14 @@ $mobile-breakpoint: 800px;
       padding-top: 1rem;
 
       h1 {
+        font-family: "Times New Roman";
         font-size: 3rem;
+        @media screen and (max-width: 80rem) {
+          font-size: 2.5rem;
+        }
+        font-weight: 800;
+        text-align: right;
+        padding-right: 2rem;
         color: #333333;
         position: sticky;
         top: 1rem;
@@ -205,6 +213,7 @@ $mobile-breakpoint: 800px;
           padding-bottom: 1rem;
           border-right: none;
           border-bottom: 2px solid #a5a5a5;
+          text-align: left;
         }
       }
     }
@@ -257,6 +266,7 @@ $mobile-breakpoint: 800px;
 
           h2 {
             font-size: 2em; // 32px;
+            font-weight: 400;
             margin: 0;
             margin-bottom: 0.25em;
             line-height:1;
