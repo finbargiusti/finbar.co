@@ -237,7 +237,7 @@ $mobile-breakpoint: 50rem;
 
         &:not(:first-child) {
           border-top: 2px dashed #d5d5d5;
-          padding-top: 20px;
+          padding-top: 2rem;
         }
 
         &.project {
@@ -249,7 +249,6 @@ $mobile-breakpoint: 50rem;
           grid-template-columns: 1fr ;
           grid-template-rows: 1fr ;
           grid-template-areas: "text";
-          padding-bottom: 30px;
         }
         opacity: 0;
         transform: translateY(10px);
