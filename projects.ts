@@ -32,4 +32,4 @@ function makeObservables() {
   });
 }
 
-window.onload = makeObservables;
+window.addEventListener('load', makeObservables);
