@@ -1,0 +1,3 @@
+[submodule "vendor/elua"]
+	path = src/lua/vendor/elua
+	url = https://github.com/finbargiusti/elua.git

@@ -1,0 +1,14 @@
+{%
+  local header = require('components.header')
+  local md = require('components.markdown')
+%}
+<!DOCTYPE html>
+<html>
+  {%= header({Title = "page: " .. title}) %}
+  <body>
+    <div class = "main">
+      <a href="/" class="back">⬅ Go home</a>
+      {%= md(content) %}
+    </div>
+  </body>
+</html>

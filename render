@@ -1,0 +1,10 @@
+#!/usr/bin/env lua5.1
+
+package.path = package.path .. ';./src/lua/vendor/?/?.lua;'
+package.path = package.path .. ';./src/lua/?.lua;'
+
+require('init')
+
+-- render the site
+
+require('render')

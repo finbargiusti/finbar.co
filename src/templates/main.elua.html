@@ -1,0 +1,12 @@
+{%
+  local header = require('components.header')
+%}
+<!DOCTYPE html>
+<html>
+  {%= header({Title = Title}) %}
+  <body>
+    <div class = "main">
+      {%= content %}
+    </div>
+  </body>
+</html>
