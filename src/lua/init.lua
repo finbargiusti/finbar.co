@@ -29,6 +29,7 @@ function R.template(template, env, to_file)
   o:write(rendered)
   o:close()
   S:write(folder_path .. '/style.css')
+  S:clear()
 end
 
 function R.mirror(frompath, topath)

@@ -26,7 +26,7 @@ function Styler:write(path)
     if not k_ then return end
     return value .. '\n' .. (get_style(k_) or '')
   end
-  local text = get_style()
+  local text = get_style() or ''
   local f = assert(io.open(path, 'w'))
   f:write(text)
   f:close()
