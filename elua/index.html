@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <header>
+    <title>page: Elua tutorial</title>
+    <link rel="stylesheet" type="text/css" href="/style/main.css" />
+    <!-- local style -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </header>
+
+  <body>
+    <div class="page">
+      <a href="/" class="back">⬅ Go home</a>
+      <h1 id="how-to-use-elua">How to use Elua</h1>
+<p>Elua is the minimal lua templating language I have written. It is
+quite simple.</p>
+<p>Templates look like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Numbers 1 to 4:<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>{% for i = 1,4 do %}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>{%= i %}<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>{% end %}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">ol</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Elua exports a module with the following methods:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">input</span><span class="co"> string</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@return</span><span class="co"> function(env: table?): string</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="cn">M</span><span class="op">.</span>compile<span class="op">(</span><span class="va">input</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">input</span><span class="co"> string</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">env</span><span class="co"> table?</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@return</span><span class="co"> string</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="cn">M</span><span class="op">.</span>render<span class="op">(</span><span class="va">input</span><span class="op">,</span> <span class="va">env</span><span class="op">)</span> <span class="kw">end</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">from</span><span class="co"> string</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">to</span><span class="co"> string</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span><span class="an">@param</span><span class="co"> </span><span class="cv">env</span><span class="co"> table?</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="cn">M</span><span class="op">.</span>render_file<span class="op">(</span><span class="va">from</span><span class="op">,</span> <span class="va">to</span><span class="op">,</span> <span class="va">env</span><span class="op">)</span> <span class="kw">end</span></span></code></pre></div>
+<p><code>compile</code> returns a function that given an template,
+returns a function that given a table <code>env</code> with the
+execution environment. The execution environment inherits the globals of
+its caller and by default includes just the globals.</p>
+<p><code>render</code> just compiles and immediately runs the template
+with a given env.</p>
+<p><code>render_file</code> is a helper that reads the template from a
+file <code>from</code>, renders it with execution context
+<code>env</code>, and saves the output to the the file
+<code>to</code>.</p>
+<h2 id="nuances">Nuances</h2>
+<p>Elua is generally unsafe. Arbitrary lua code between either
+<code>{% %}</code> or <code>{%= %}</code> will be executed.</p>
+<p>For prettiness of outputs, any whitespace between non-printing blocks
+is omitted from the output.</p>
+<p>You can see <a href="https://github.com/finbargiusti/finbar.co">finbar.co</a> as a
+practical example of elua. It includes a basic templating / packaging
+and component system in lua.</p>
+
+    </div>
+  </body>
+</html>
