@@ -4,10 +4,12 @@
 %}
 <!DOCTYPE html>
 <html>
-  {%= header({Title = "page: " .. title}) %}
+  {%= header({Title = "blog: " .. title}) %}
   <body>
     <div class="page">
       <a href="/" class="back">⬅ Go home</a>
+      <h1>{%= title %}</h1>
+      <h4>{%= date %}</h4>
       {%= md(content) %}
     </div>
   </body>

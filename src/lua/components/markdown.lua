@@ -1,7 +1,7 @@
 local function render(md)
   local output = os.tmpname()
 
-  local input = assert(io.popen('pandoc -t html -o ' .. output, 'w'))
+  local input = assert(io.popen('pandoc --highlight-style=pygments --embed-resources -t html -o ' .. output, 'w'))
   input:write(md)
   input:close()
 

@@ -1,11 +1,15 @@
 E = require('elua')
+local Styler = require('util.styler')
 R = {}
+U = {}
+
+S = Styler.new()
 
 ---Render an elua template in src/templates
 ---@param template string path to template
 ---@param env table execution environment
----@param to_file string? (URL) path to render to. if nil, 
----returns the rendered template. (starts with /)
+---@param to_file string (URL) path to render to. if nil, 
+---renders the given template. (starts with /)
 function R.template(template, env, to_file)
   -- templates end with .elua.html for conveniance
   local template_path = 'src/templates/' .. template .. '.elua.html'
@@ -15,19 +19,16 @@ function R.template(template, env, to_file)
   end
   local s = t:read('*all')
   t:close()
+  local folder_path = 'dist/' .. (to_file:match("/(.+)") or "")
   local rendered = E.render(s, env)
-  if to_file then
-    local folder_path = 'dist/' .. (to_file:match("/(.+)") or "")
-    os.execute('mkdir -p ' .. folder_path)
-    local o, err = io.open(folder_path .. '/index.html', 'w')
-    if not o then
-      error('could not open outfile for writing: ' .. err)
-    end
-    o:write(rendered)
-    o:close()
-  else
-    return rendered
+  os.execute('mkdir -p ' .. folder_path)
+  local o, err = io.open(folder_path .. '/index.html', 'w')
+  if not o then
+    error('could not open outfile for writing: ' .. err)
   end
+  o:write(rendered)
+  o:close()
+  S:write(folder_path .. '/style.css')
 end
 
 function R.mirror(frompath, topath)
@@ -45,3 +46,14 @@ function R.mirror(frompath, topath)
     print(string.format("Failed to copy %s -> %s", from_path, to_path))
   end
 end
+
+---@param fn function(k, v): unknown, unknown
+function table.map(t, fn)
+  local res = {}
+  for k, v in pairs(t) do
+    local k_t, v_t = fn(k, v)
+    res[k_t] = v_t
+  end
+  return res
+end
+

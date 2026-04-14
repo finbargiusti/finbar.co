@@ -1,5 +1,52 @@
 ---The book component has sections, a title and a TOC.
-return E.compile [[
+
+return function(env)
+  S:add('book', [[
+.book {
+  display: grid;
+  grid-template: 1fr /
+    16rem
+    minmax(min-content, 64rem)
+    auto;
+  grid-template-areas: "toc content .";
+  margin: auto;
+
+  max-width: 96rem;
+}
+@media screen and (max-width: 48rem) {
+  .book {
+    grid-template: min-content auto / 1fr;
+    grid-template-areas: "toc" "content";
+  }
+}
+.content {
+  grid-area: content;
+  display: relative;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box
+}
+.toc {
+  padding-top: 2rem;
+  grid-area: toc;
+}
+.toc a {
+  display: block;
+  color: white;
+  background-color: #333;
+  margin: none;
+  padding: none;
+  box-sizing: border-box;
+  padding: 8px 16px 8px 16px;
+}
+.toc a:hover {
+  background-color: #444;
+}
+.toc .wrap {
+  border-right: 2px #eee solid;
+}
+  ]])
+  return E.compile([[
 <div class = "book">
   <div class = "toc">
     <div class = "wrap">
@@ -22,4 +69,5 @@ return E.compile [[
     {% end %}
   </div>
 </div>
-]]
+]])(env)
+end
