@@ -1,0 +1,35 @@
+name: Use lua to bootstrap
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y lua5.1 pandoc
+
+    - name: Get versions
+      run: |
+        lua5.1 -v
+        pandoc --version
+
+    - name: Build
+      run: |
+        ./render
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages  # The branch to deploy to
+        folder: dist   
+        token: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically creates a token for the repository
