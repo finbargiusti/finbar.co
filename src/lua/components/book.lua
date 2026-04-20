@@ -18,16 +18,16 @@ return function(env)
 }
 .content {
   grid-area: content;
-  padding: var(--line-height) 2ch calc(3 * var(--line-height)) 2ch;
+  padding: 1.5rem 2ch calc(3 * 1.5rem) 2ch;
   box-sizing: border-box;
-  max-width: 100ch;
+  max-width: 140ch;
 }
 .content .title {
   margin-bottom: 0px;
 }
 .toc {
   grid-area: toc;
-  padding-top: var(--line-height);
+  padding-top: 1.5rem;
   background-color: #44475A;
 }
 .toc a {
@@ -40,16 +40,13 @@ return function(env)
 .toc a:hover {
   background-color: #54576A;
 }
-.section {
-  padding-bottom: var(--line-height);
-}
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 80ch) {
   .book {
     grid-template: min-content auto / 1fr;
     grid-template-areas: "toc" "content";
   }
   .content {
-    padding-top: var(--line-height);
+    padding-top: 1.5rem;
   }
 }
   ]], {max_item_width = max_item_width}))

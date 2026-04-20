@@ -3,10 +3,10 @@ return function(env)
   S:add('cards', [[
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
   grid-auto-flow: row;
   grid-template-rows: repeat(2, auto);
-  row-gap: calc(0.8 * var(--line-height));
+  row-gap: 1.2rem;
   column-gap: 1.8ch;
   padding: 0.4rem 0.4ch 0.4rem 0.4ch;
 }
