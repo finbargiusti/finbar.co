@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <header>
+    <title>blog: Updating this site's style.</title>
+    <link rel="stylesheet" type="text/css" href="/style/main.css" />
+    <!-- local style -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </header>
+
+  <body>
+    <div class="page">
+      <a href="/" class="back">⬅ Go home</a>
+      <h1>Updating this site's style.</h1>
+      <h4>2026-04-19</h4>
+      <p>Today, I updated the style of this site.</p>
+<p>I tried, using just css rules and standard HTML elements, to make it
+appear like the site is composed of just text, like in a TUI.</p>
+<p>The reason I did not try to fancily <em>actually</em> form it in text
+is to make it more readable to bots and more accessible to those using a
+screen reader etc.</p>
+<p>The trick is using the <code>rem</code> and <code>ch</code> units in
+css. <code>rem</code> is relative to the font-size, and <code>ch</code>
+relative to the width of a 0 character (and in monospace, any
+character).</p>
+<p>Using these two units, we can size all HTML elements s.t. they all
+snap to an imaginary grid of <code>1ch</code> and
+<code>line-height * 1rem</code> cells.</p>
+<p>This gives the appearance of a text-based website!</p>
+
+    </div>
+  </body>
+</html>
