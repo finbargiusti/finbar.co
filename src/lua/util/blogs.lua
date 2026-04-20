@@ -14,7 +14,7 @@ local blogs = {}
 ---@param name string
 ---@return string
 local function fm_val(content, name)
-  return content:match('%-%-%-\n.-' .. name .. '%s-:([^\n]+).-%-%-%-')
+  return content:match('%-%-%-\n.-' .. name .. '%s-:%s+([^\n]+).-%-%-%-')
 end
 
 for path in blog_sources:lines() do

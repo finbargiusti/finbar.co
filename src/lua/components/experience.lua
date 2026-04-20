@@ -17,12 +17,9 @@ return function(env)
   height: 100%;
 }
 .experience .title {
-  margin: 0.2rem 0px 0.2rem 0px;
-  font-size: 1.5rem;
-  color: #eee;
+  margin: 0px;
 }
 .experience .company {
-  margin: 0px 0px 0.2rem 0px;
   text-transform: uppercase;
   font-weight: bold;
   color: #ccc;
@@ -38,14 +35,14 @@ return function(env)
   display: flex;
   text-transform: uppercase;
   flex-direction: row;
-  font-size: 0.8rem;
-  gap: 0.3rem;
+  column-gap: 2ch;
+  row-gap: 0ch;
   flex-wrap: wrap;
-  color: #ccc;
+  color: #44475A;
   line-height: 1rem;
 }
 .experience .keywords > span {
-  margin: 0px 0.2rem 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
   ]])
 

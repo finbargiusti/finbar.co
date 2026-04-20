@@ -4,7 +4,29 @@ local experience = require('components.experience')
 local cards = require('components.cards')
 local blogs = require('util.blogs')
 
-return book {
+local function blogsummary()
+  S:add('blogsummary', [[
+    .blogsummary * {
+      margin: 0px;
+    }
+  ]])
+  return cards({
+    content = table.map(blogs, function(i, b)
+      if i > 4 then
+        return i, nil
+      end
+      return i, E.render([[
+        <div class="blogsummary">
+          <h3>{%= title %} | {%= date %}</h3>
+          <p>{%= summary %}</h4>
+          <p><a href="/blog/{%= slug %}">Read more</a></p>
+        </div>
+      ]], b)
+    end)
+  })
+end
+
+return function() return book {
   title = "Finbar Giusti",
   sections = {
     {
@@ -23,18 +45,7 @@ If you'd like to talk, **send me an email** at finbar(at)finbar.co.
       slug = "blog",
       content = md [[
 Recent entries from my blog:
-]] .. cards({
-        content = table.map(blogs, function(i, b)
-          if i > 4 then
-            return i, nil
-          end
-          return i, E.render([[
-<h3>{%= title %}&nbsp;|&nbsp;{%= date %}</h3>
-<p>{%= summary %}</h4>
-<p><a href="/blog/{%= slug %}">Read more</a></p>
-]], b)
-        end)
-      })
+]] .. blogsummary()
     },
     {
       title = "Work Experience",
@@ -57,4 +68,4 @@ You can see the source of this website on github [here](https://github.com/finba
 ]]
     }
   }
-}
+} end

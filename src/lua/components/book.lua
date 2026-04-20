@@ -1,63 +1,67 @@
 ---The book component has sections, a title and a TOC.
 
 return function(env)
-  S:add('book', [[
+  local max_item_width = 1
+  for _, s in ipairs(env.sections) do
+    max_item_width = math.max(max_item_width, s.title:len())
+  end
+  S:add('book', E.render([[
 .book {
   display: grid;
   grid-template: 1fr /
-    16rem
-    minmax(min-content, 64rem)
+    max-content
     auto;
-  grid-template-areas: "toc content .";
+  grid-template-areas: "toc content";
   margin: auto;
-
-  max-width: 96rem;
+}
+.content {
+  grid-area: content;
+  padding: var(--line-height) 2ch calc(3 * var(--line-height)) 2ch;
+  box-sizing: border-box;
+  max-width: 100ch;
+}
+.content .title {
+  margin-bottom: 0px;
+}
+.toc {
+  grid-area: toc;
+  padding-top: var(--line-height);
+  background-color: #44475A;
+}
+.toc a {
+  display: block;
+  color: inherit;
+  box-sizing: border-box;
+  font-size: 1rem;
+  padding: 0px 2ch 0px 2ch;
+}
+.toc a:hover {
+  background-color: #54576A;
+}
+.section {
+  padding-bottom: var(--line-height);
 }
 @media screen and (max-width: 48rem) {
   .book {
     grid-template: min-content auto / 1fr;
     grid-template-areas: "toc" "content";
   }
+  .content {
+    padding-top: var(--line-height);
+  }
 }
-.content {
-  grid-area: content;
-  display: relative;
-  padding: 2rem;
-  width: 100%;
-  box-sizing: border-box
-}
-.toc {
-  padding-top: 2rem;
-  grid-area: toc;
-}
-.toc a {
-  display: block;
-  color: white;
-  background-color: #333;
-  margin: none;
-  padding: none;
-  box-sizing: border-box;
-  padding: 8px 16px 8px 16px;
-}
-.toc a:hover {
-  background-color: #444;
-}
-.toc .wrap {
-  border-right: 2px #eee solid;
-}
-  ]])
+  ]], {max_item_width = max_item_width}))
   return E.compile([[
 <div class = "book">
   <div class = "toc">
-    <div class = "wrap">
-      {% for i, section in ipairs(sections) do %}
-      <a href="#{%= section.slug %}">{%= section.title %}</a>
-      {% end %}
-    </div>
+    {% for i, section in ipairs(sections) do %}
+    <a href="#{%= section.slug %}">{%= section.title %}</a>
+    {% end %}
   </div>
   <div class="content">
     {% if title then %}
-    <h1>{%= title %}</h1>
+    <h1 class="title">{%= title %}</h1>
+    <hr class="underline"/>
     {% end %}
     {% for i, section in ipairs(sections) do %}
     <div class="section" id="{%= section.slug or '' %}">

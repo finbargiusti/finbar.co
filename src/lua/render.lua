@@ -1,10 +1,12 @@
 os.execute('rm -rf dist/*')
 
 R.template('main',
-  {
-    Title = "Finbar Giusti",
-    content = require('content.home')
-  }, '/')
+  function()
+    return {
+      Title = "Finbar Giusti",
+      content = require('content.home')()
+    }
+  end, '/')
 
 require('pages')
 require('blog')

@@ -6,12 +6,16 @@ return function(env)
   grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   grid-auto-flow: row;
   grid-template-rows: repeat(2, auto);
-  gap: 1rem;
+  row-gap: calc(0.8 * var(--line-height));
+  column-gap: 1.8ch;
+  padding: 0.4rem 0.4ch 0.4rem 0.4ch;
 }
 .card {
-  border: 0.1rem solid white;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-top: 0.2rem solid #F8F8F2;
+  border-bottom: 0.2rem solid #F8F8F2;
+  border-left: 0.2ch solid #F8F8F2;
+  border-right: 0.2ch solid #F8F8F2;
+  padding: 0.4rem 1.4ch 0.4rem 1.4ch;
   display: inline-block;
   box-sizing: border-box;
 }
