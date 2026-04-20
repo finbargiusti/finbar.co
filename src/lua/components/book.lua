@@ -13,6 +13,8 @@ return function(env)
     auto;
   grid-template-areas: "toc content";
   margin: auto;
+  width: max-content;
+  max-width: 100%;
 }
 .content {
   grid-area: content;
