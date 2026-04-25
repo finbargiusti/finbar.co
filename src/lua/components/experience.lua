@@ -22,6 +22,7 @@ return function(env)
 .experience .company {
   text-transform: uppercase;
   font-weight: bold;
+  margin: 0px;
   color: #ccc;
 }
 .experience .time {
@@ -37,9 +38,10 @@ return function(env)
   flex-direction: row;
   column-gap: 2ch;
   row-gap: 0ch;
+  margin: 0px;
   flex-wrap: wrap;
   color: #44475A;
-  line-height: 1rem;
+  line-height: 1.5rem;
 }
 .experience .keywords > span {
   margin: 0px 0px 0px 0px;
@@ -53,6 +55,7 @@ return function(env)
   <h4 class="title">{%= title %}</h4>
   <p class="company">{%= company %}</p>
   <p class="time">{%= from %} - {%= to %}</p>
+  <hr/>
   <div class="description">{%= description or '' %}</div>
   <p class="keywords">
   {% if keywords then %}

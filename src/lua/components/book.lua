@@ -13,14 +13,17 @@ return function(env)
     auto;
   grid-template-areas: "toc content";
   margin: auto;
-  width: max-content;
   max-width: 100%;
 }
 .content {
   grid-area: content;
-  padding: 1.5rem 2ch calc(3 * 1.5rem) 2ch;
+  font-size: 1rem;
+  padding: 1.5rem 2ch 4.5rem 2ch;
   box-sizing: border-box;
-  max-width: 140ch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-x: scroll;
 }
 .content .title {
   margin-bottom: 0px;

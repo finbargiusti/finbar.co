@@ -6,8 +6,16 @@ local blogs = require('util.blogs')
 
 local function blogsummary()
   S:add('blogsummary', [[
-    .blogsummary * {
+    .blogsummary h3,.link,.date {
       margin: 0px;
+    }
+    .blogsummary {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .blogsummary .summary {
+      flex-grow: 1;
     }
   ]])
   return cards({
@@ -17,9 +25,11 @@ local function blogsummary()
       end
       return i, E.render([[
         <div class="blogsummary">
-          <h3>{%= title %} | {%= date %}</h3>
-          <p>{%= summary %}</h4>
-          <p><a href="/blog/{%= slug %}">Read more</a></p>
+          <h3>{%= title %}</h3>
+          <p class="date">{%= date %}</b>
+          <hr/>
+          <p class="summary">{%= summary %}</h4>
+          <p class="link"><a href="/blog/{%= slug %}">Read more</a></p>
         </div>
       ]], b)
     end)
