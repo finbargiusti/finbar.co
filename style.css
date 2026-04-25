@@ -1,20 +1,18 @@
 .cards {
   display: grid;
+  font-size: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
   grid-auto-flow: row;
   grid-template-rows: repeat(2, auto);
-  row-gap: 1.2rem;
-  column-gap: 1.8ch;
-  padding: 0.4rem 0.4ch 0.4rem 0.4ch;
 }
 .card {
-  border-top: 0.2rem solid #F8F8F2;
-  border-bottom: 0.2rem solid #F8F8F2;
+  border-top: 0.3rem solid #F8F8F2;
+  border-bottom: 0.3rem solid #F8F8F2;
   border-left: 0.2ch solid #F8F8F2;
   border-right: 0.2ch solid #F8F8F2;
-  padding: 0.4rem 1.4ch 0.4rem 1.4ch;
+  padding: 0.6rem 1.4ch 0.6rem 1.4ch;
+  margin: 0.6rem 0.4ch 0.6rem 0.4ch;
   display: inline-block;
-  box-sizing: border-box;
 }
   
 .experience {
@@ -28,6 +26,7 @@
 .experience .company {
   text-transform: uppercase;
   font-weight: bold;
+  margin: 0px;
   color: #ccc;
 }
 .experience .time {
@@ -43,16 +42,25 @@
   flex-direction: row;
   column-gap: 2ch;
   row-gap: 0ch;
+  margin: 0px;
   flex-wrap: wrap;
   color: #44475A;
-  line-height: 1rem;
+  line-height: 1.5rem;
 }
 .experience .keywords > span {
   margin: 0px 0px 0px 0px;
 }
   
-    .blogsummary * {
+    .blogsummary h3,.link,.date {
       margin: 0px;
+    }
+    .blogsummary {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .blogsummary .summary {
+      flex-grow: 1;
     }
   
 .book {
@@ -62,14 +70,17 @@
     auto;
   grid-template-areas: "toc content";
   margin: auto;
-  width: max-content;
   max-width: 100%;
 }
 .content {
   grid-area: content;
-  padding: 1.5rem 2ch calc(3 * 1.5rem) 2ch;
+  font-size: 1rem;
+  padding: 1.5rem 2ch 4.5rem 2ch;
   box-sizing: border-box;
-  max-width: 140ch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-x: scroll;
 }
 .content .title {
   margin-bottom: 0px;

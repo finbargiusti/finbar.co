@@ -23,14 +23,18 @@ html {
 }
 
 #wrap {
-  margin: 0px auto 0px auto;
+  width: 100%;
   resize: horizontal;
   overflow: auto;
   box-sizing: border-box;
 }
 
+#main {
+  padding-right: 1ch;
+}
+
 p {
-  margin: 0px 0px 1.5rem 0px;
+  margin: 1.5rem 0px 1.5rem 0px;
   font-size: 1rem;
 }
 
@@ -38,6 +42,7 @@ a {
   color: #8BE9FD;
   text-decoration: none;
   line-height: 1.5rem;
+  cursor: none;
 }
 
 hr {
@@ -45,8 +50,9 @@ hr {
   border: none;
   background-color: #44475A;
   margin-top: calc((1.5rem * 0.4));
-  margin-bottom: calc((1.5rem * 1.4));
+  margin-bottom: calc((1.5rem * 0.4));
   width: 100%;
+  cursor: none;
 }
 
 

@@ -1,29 +1,42 @@
-
 // Get width of 1ch in pixels
 function getChWidth(el) {
   const test = document.createElement("span");
   test.textContent = "0";
   test.style.visibility = "hidden";
+  test.style.fontSize = getComputedStyle(el).fontSize;
+  test.style.fontFamily = getComputedStyle(el).fontFamily;
+
   el.appendChild(test);
   const width = test.getBoundingClientRect().width;
   el.removeChild(test);
+
   return width;
 }
 
-window.addEventListener('load', () => {
-  const wrap = document.getElementById("wrap");
-  const main = document.getElementById("main");
+window.addEventListener("load", () => {
 
-  const chWidth = getChWidth(main);
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const containerWidth = entry.target.getBoundingClientRect().width;
 
-  const observer = new ResizeObserver(() => {
-    const widthPx = wrap.getBoundingClientRect().width
-    const ch = widthPx / chWidth;
+      const chUnit = getChWidth(entry.target) * 6; // width of 6ch in px
 
-    const snapped = Math.round(ch);
+      const units = containerWidth / chUnit;
 
-    main.style.width = snapped + "ch";
+      const snapped = Math.floor(units);
+
+      const target = entry.target.querySelector(".pinsize");
+      if (target) {
+        target.style.width = snapped * 6 + "ch";
+      }
+    }
   });
 
-  observer.observe(wrap);
+  const els = document.querySelectorAll(".pinsize");
+
+  els.forEach((el) => {
+    if (el.parentElement) {
+      observer.observe(el.parentElement);
+    }
+  });
 });
