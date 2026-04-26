@@ -43,10 +43,13 @@ return function(env)
 .toc a:hover {
   background-color: #54576A;
 }
-@media screen and (max-width: 80ch) {
+@media screen and (max-width: 100vh) {
   .book {
     grid-template: min-content auto / 1fr;
     grid-template-areas: "toc" "content";
+  }
+  .toc {
+    padding-bottom: 1.4rem;
   }
   .content {
     padding-top: 1.5rem;
