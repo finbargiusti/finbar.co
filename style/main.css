@@ -1,5 +1,5 @@
 html {
-  font-size: 1.3em;
+  font-size: max(2vh, 1vw);
 }
 
 body {
