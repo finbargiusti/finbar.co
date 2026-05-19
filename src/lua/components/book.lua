@@ -45,7 +45,7 @@ return function(env)
 }
 @media screen and (max-width: 100vh) {
   .book {
-    grid-template: min-content auto / 1fr;
+    grid-template: min-content / 1fr;
     grid-template-areas: "toc" "content";
   }
   .toc {
@@ -53,6 +53,7 @@ return function(env)
   }
   .content {
     padding-top: 1.5rem;
+    max-width: 100vw;
   }
 }
   ]], {max_item_width = max_item_width}))

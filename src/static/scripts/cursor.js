@@ -51,7 +51,8 @@ window.addEventListener('load', () => {
   function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-  document.body.addEventListener('mousemove', e => {
+  wrap.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse') return;
     clearCanvas();
     const x = Math.floor(e.pageX / ch.width + 0.5) * ch.width;
     const y = Math.floor(e.pageY / ch.height) * ch.height;

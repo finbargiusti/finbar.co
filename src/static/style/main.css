@@ -1,5 +1,7 @@
 html {
-  font-size: max(2vh, 1vw);
+  font-size: clamp(16px, 0.9vw + 0.9rem, 20px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -27,6 +29,11 @@ html {
   resize: horizontal;
   overflow: auto;
   box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.page {
+  padding: var(--line-height) 4ch var(--line-height) 4ch;
 }
 
 #main {
@@ -40,9 +47,15 @@ p {
 
 a {
   color: #8BE9FD;
-  text-decoration: none;
+  text-decoration: underline;
   line-height: 1.5rem;
   cursor: none;
+  position: relative;
+  display: inline-block;
+}
+
+a:hover {
+  font-weight: bold;
 }
 
 hr {
@@ -55,11 +68,31 @@ hr {
   cursor: none;
 }
 
-
-a:hover {
-  color: #9BF9FF;
-  text-decoration: underline;
+/*
+a::before,
+a::after {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
+
+a::before {
+  content: '>';
+  left: 0;
+  transform: translateX(-1ch);
+}
+
+a::after {
+  content: '<';
+  right: 0;
+  transform: translateX(1ch);
+}
+
+a:hover::before,
+a:hover::after {
+  opacity: 1;
+}
+*/
 
 b, strong {
   color: #FF5555;

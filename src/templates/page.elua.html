@@ -4,11 +4,14 @@
 %}
 <!DOCTYPE html>
 <html>
-  {%= header({Title = "page: " .. title}) %}
+  {%= header({Title = "page: " .. title, UPath=UPath}) %}
   <body>
-    <div class="page">
-      <a href="/" class="back">⬅ Go home</a>
-      {%= md(content) %}
+    <div id="wrap">
+      <div class="page">
+        <a href="/" class="back">⬅ Go home</a>
+        {%= md(content) %}
+      </div>
     </div>
   </body>
+  <script src="/scripts/cursor.js"></script> 
 </html>

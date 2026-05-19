@@ -4,7 +4,7 @@ return function(env)
 .cards {
   display: grid;
   font-size: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(40ch, 100%), 1fr));
   grid-auto-flow: row;
   grid-template-rows: repeat(2, auto);
 }

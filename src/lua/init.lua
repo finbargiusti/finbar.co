@@ -1,5 +1,6 @@
 E = require('elua')
 local Styler = require('util.styler')
+local T = require('util.table')
 R = {}
 U = {}
 
@@ -26,7 +27,11 @@ function R.template(template, env, to_file)
   else
     t_env = env
   end
-  local rendered = E.render(s, t_env)
+  local defaults = {
+    UPath = to_file
+  }
+  local x_env = T.merge(t_env, defaults)
+  local rendered = E.render(s, x_env)
   os.execute('mkdir -p ' .. folder_path)
   local o, err = io.open(folder_path .. '/index.html', 'w')
   if not o then
